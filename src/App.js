@@ -14,8 +14,10 @@ export default function App() {
     <>
       <Router>
         <Navbar />
+        <Register />
+        <Login />
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          {/* <Route exact path="/" component={LandingPage} /> */}
           {/* <Route path="/register" component={Register} /> */}
           {/* <Route path="/login" component={Login} /> */}
           <PrivateRoute path="/plants" component={Plants} />
