@@ -8,9 +8,11 @@ export const handleLogin = (user) => async (dispatch) => {
     const { username, phoneNumber } = await services.login(user)
 
     dispatch(loginSuccess({ username, phoneNumber }))
+
+    return { username, phoneNumber }
   } catch (err) {
     dispatch(handleError({ error: 'validation', message: err.message }))
+  } finally {
+    dispatch(endAPICall())
   }
-
-  dispatch(endAPICall())
 }

@@ -5,10 +5,12 @@ export const handleSignup = (user) => async (dispatch) => {
   dispatch(startAPICall())
 
   try {
-    await services.signup(user)
+    const { username, phoneNumber } = await services.signup(user)
+
+    return { username, phoneNumber }
   } catch (err) {
     dispatch(handleError({ error: 'validation', message: err.message }))
+  } finally {
+    dispatch(endAPICall())
   }
-
-  dispatch(endAPICall())
 }

@@ -11,6 +11,7 @@ const initialState = {
   errors: {
     validation: '',
     create: '',
+    read: '',
     update: '',
     delete: '',
   },

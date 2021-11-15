@@ -5,12 +5,14 @@ export const handleLogout = (user) => async (dispatch) => {
   dispatch(startAPICall())
 
   try {
-    await services.logout(user)
+    const { username, phoneNumber } = await services.logout(user)
 
     dispatch(logoutSuccess())
+
+    return { username, phoneNumber }
   } catch (err) {
     dispatch(handleError({ error: 'validation', message: err.message }))
+  } finally {
+    dispatch(endAPICall())
   }
-
-  dispatch(endAPICall())
 }
