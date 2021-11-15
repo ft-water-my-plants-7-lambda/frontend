@@ -1,4 +1,4 @@
-export default function RegistrationForm() {
+export default function Register() {
   return (
     <form>
       <h2>Registration</h2>
