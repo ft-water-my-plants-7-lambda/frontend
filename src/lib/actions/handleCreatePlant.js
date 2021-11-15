@@ -1,11 +1,11 @@
 import { startAPICall, updatePlants, handleError, endAPICall } from '.'
 import { services } from '../../services'
 
-export const handleCreatePlant = (user) => async (dispatch) => {
+export const handleCreatePlant = (plant) => async (dispatch) => {
   dispatch(startAPICall())
 
   try {
-    const plants = await services.updatePlant(user)
+    const plants = await services.updatePlant(plant)
 
     dispatch(updatePlants(plants))
   } catch (err) {

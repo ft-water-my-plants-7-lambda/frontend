@@ -79,6 +79,14 @@ export const reducer = (state = initialState, action) => {
         plants: [...state.plants, action.payload],
       }
 
+    case ACTIONS.DELETE_PLANT:
+      const plants = state.plants.filter((plant) => plant.id !== action.payload)
+
+      return {
+        ...state,
+        plants: plants,
+      }
+
     case ACTIONS.HANDLE_ERROR:
       const [error, message] = action.payload
 

@@ -6,6 +6,7 @@ export const ACTIONS = {
   LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
   UPDATE_USER: 'UPDATE_USER',
   UPDATE_PLANTS: 'UPDATE_PLANTS',
+  DELETE_PLANT: 'DELETE_PLANT',
   HANDLE_ERROR: 'HANDLE_ERROR',
 }
 
@@ -25,6 +26,7 @@ export const updateUser = ({ username, phoneNumber }) => ({
 })
 
 export const updatePlants = (plants) => ({ type: ACTIONS.UPDATE_PLANTS, payload: plants })
+export const deletePlant = (plantId) => ({ type: ACTIONS.UPDATE_PLANTS, payload: plantId })
 
 // pass an object i.e. { error: 'update', value: '404' }
 // error should have value from 'validation', 'create', 'update', or 'delete'
