@@ -1,7 +1,8 @@
-import { startAPICall, updateUser, handleError, endAPICall } from '.'
+import { resetErrors, startAPICall, updateUser, handleError, endAPICall } from '.'
 import { services } from '../../services'
 
 export const handleUpdateUser = (user) => async (dispatch) => {
+  dispatch(resetErrors())
   dispatch(startAPICall())
 
   try {

@@ -1,7 +1,8 @@
-import { startAPICall, loginSuccess, handleError, endAPICall } from '.'
+import { resetErrors, startAPICall, loginSuccess, handleError, endAPICall } from '.'
 import { services } from '../../services'
 
 export const handleLogin = (user) => async (dispatch) => {
+  dispatch(resetErrors())
   dispatch(startAPICall())
 
   try {

@@ -1,7 +1,8 @@
-import { startAPICall, deletePlant, handleError, endAPICall } from '.'
+import { resetErrors, startAPICall, deletePlant, handleError, endAPICall } from '.'
 import { services } from '../../services'
 
 export const handleDeletePlant = (plantId) => async (dispatch) => {
+  dispatch(resetErrors())
   dispatch(startAPICall())
 
   try {

@@ -1,7 +1,8 @@
-import { startAPICall, logoutSuccess, handleError, endAPICall } from '.'
+import { resetErrors, startAPICall, logoutSuccess, handleError, endAPICall } from '.'
 import { services } from '../../services'
 
 export const handleLogout = (user) => async (dispatch) => {
+  dispatch(resetErrors())
   dispatch(startAPICall())
 
   try {
