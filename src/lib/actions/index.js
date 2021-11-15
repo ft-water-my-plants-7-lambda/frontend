@@ -29,7 +29,7 @@ export const updatePlants = (plants) => ({ type: ACTIONS.UPDATE_PLANTS, payload:
 export const deletePlant = (plantId) => ({ type: ACTIONS.UPDATE_PLANTS, payload: plantId })
 
 // pass an object i.e. { error: 'update', value: '404' }
-// error should have value from 'validation', 'create', 'update', or 'delete'
+// error should have value of 'validation', 'create', 'update', or 'delete'
 // value should be the text of the error i.e. '404 - page not found'
 export const handleError = ({ error, message }) => ({
   type: ACTIONS.HANDLE_ERROR,

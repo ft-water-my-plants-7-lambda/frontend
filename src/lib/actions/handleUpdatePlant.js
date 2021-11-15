@@ -11,7 +11,7 @@ export const handleUpdatePlant = (plant) => async (dispatch) => {
 
     return plants
   } catch (err) {
-    dispatch(handleError({ error: 'delete', message: err.message }))
+    dispatch(handleError({ error: 'update', message: err.message }))
   } finally {
     dispatch(endAPICall())
   }
