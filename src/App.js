@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
@@ -6,6 +8,8 @@ import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
 import Plants from './components/Plants/Dashboard'
 import AddPlants from './components/Plants/AddPlants'
+import RegistrationForm from "./components/RegistrationForm";
+
 
 export default function App() {
   return (
