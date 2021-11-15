@@ -54,6 +54,23 @@ export const reducer = (state = initialState, action) => {
         },
       }
 
+    case ACTIONS.LOGOUT_SUCCESS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          isAuthenticated: false,
+          username: '',
+          phoneNumber: '',
+        },
+      }
+
+    case ACTIONS.UPDATE_PLANTS:
+      return {
+        ...state,
+        plants: [...state.plants, action.payload],
+      }
+
     case ACTIONS.HANDLE_ERROR:
       const [error, value] = action.payload
 
