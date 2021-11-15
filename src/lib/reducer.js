@@ -72,13 +72,13 @@ export const reducer = (state = initialState, action) => {
       }
 
     case ACTIONS.HANDLE_ERROR:
-      const [error, value] = action.payload
+      const [error, message] = action.payload
 
       return {
         ...state,
         errors: {
           ...state.errors,
-          [error]: value,
+          [error]: message,
         },
       }
 
