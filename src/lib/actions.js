@@ -38,9 +38,23 @@ export const handleLogin = (user) => async (dispatch) => {
   dispatch(startAPICall())
 
   try {
-    const { username, phoneNumber } = services.login(user)
+    const { username, phoneNumber } = await services.login(user)
 
     dispatch(loginSuccess({ username, phoneNumber }))
+  } catch (err) {
+    dispatch(handleError({ error: 'validation', message: err.message }))
+  }
+
+  dispatch(endAPICall())
+}
+
+export const handleLogout = (user) => async (dispatch) => {
+  dispatch(startAPICall())
+
+  try {
+    await services.logout(user)
+
+    dispatch(logoutSuccess())
   } catch (err) {
     dispatch(handleError({ error: 'validation', message: err.message }))
   }
