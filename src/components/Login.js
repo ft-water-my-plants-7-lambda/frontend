@@ -4,17 +4,11 @@ import { useState } from "react";
 const initialCredentials = { username: "", password: "" };
 
 export default function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
   const [credentials, setCredentials] = useState(initialCredentials);
 
   const change = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-
-    console.log(e.target.value);
-    console.log(e.target.name);
 
     setCredentials({ ...credentials, [name]: value });
   };
