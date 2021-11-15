@@ -42,15 +42,13 @@ export const reducer = (state = initialState, action) => {
       }
 
     case ACTIONS.LOGIN_SUCCESS:
-      const { username, phoneNumber } = action.payload
-
       return {
         ...state,
         user: {
           ...state.user,
           isAuthenticated: true,
-          username: username,
-          phoneNumber: phoneNumber,
+          username: action.payload.username,
+          phoneNumber: action.payload.phoneNumber,
         },
       }
 
@@ -62,6 +60,16 @@ export const reducer = (state = initialState, action) => {
           isAuthenticated: false,
           username: '',
           phoneNumber: '',
+        },
+      }
+
+    case ACTIONS.UPDATE_USER:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          username: action.payload.username,
+          phoneNumber: action.payload.phoneNumber,
         },
       }
 
