@@ -18,10 +18,10 @@ const RegisterForm = ({ handleRegister }) => {
     setCredentials({ ...credentials, [name]: value })
   }
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
 
-    handleRegister(credentials)
+    await handleRegister(credentials)
     push('/login')
   }
 

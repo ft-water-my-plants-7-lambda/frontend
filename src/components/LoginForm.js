@@ -18,10 +18,10 @@ const LoginForm = ({ handleLogin }) => {
     setCredentials({ ...credentials, [name]: value })
   }
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
 
-    handleLogin(credentials)
+    await handleLogin(credentials)
     push('/plants')
   }
 
