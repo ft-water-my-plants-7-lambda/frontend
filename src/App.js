@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
@@ -7,9 +8,11 @@ import Navbar from './components/Navbar'
 import { connect } from 'react-redux'
 import { handleInit } from './lib/actions/handleInit'
 
+
 // pages
 
 // auth
+
 import LandingPage from './pages/LandingPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
@@ -25,6 +28,7 @@ import AddPlantPage from './pages/AddPlantPage'
 const App = ({ handleInit }) => {
   useEffect(() => handleInit(), [handleInit])
 
+
   return (
     <>
       <Router>
@@ -39,6 +43,7 @@ const App = ({ handleInit }) => {
           <PrivateRoute exact path="/plants/add" component={AddPlantPage} />
           <PrivateRoute exact path="/plants/:id" component={PlantPage} />
           <PrivateRoute exact path="/plants/:id/edit" component={EditPlantPage} />
+
         </Switch>
       </Router>
     </>
