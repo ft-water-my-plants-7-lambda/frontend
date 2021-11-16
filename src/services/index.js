@@ -2,7 +2,7 @@ import { createPlant } from './createPlant'
 import { deletePlant } from './deletePlant'
 import { login } from './login'
 import { logout } from './logout'
-import { signup } from './signup'
+import { register } from './register'
 import { updatePlant } from './updatePlant'
 import { updateUser } from './updateUser'
 
@@ -11,7 +11,7 @@ export const services = {
   deletePlant,
   login,
   logout,
-  signup,
+  register,
   updatePlant,
   updateUser,
 }
