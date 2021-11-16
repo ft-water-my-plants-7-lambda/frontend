@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const WelcomeMessage = styled.h1`
   font-size: 2rem;
   text-align: center;
-  margin-bottom: 2%;
+  margin: 2% 0;
   font-weight: bold;
 
   @media (min-width: 1150px) {
@@ -84,13 +84,11 @@ export const ListItems = styled(Link)`
 
 export const DetailContainer = styled.div`
   display: flex;
-  /* justify-content: space-between; */
   flex-direction: column;
   position: relative;
-  margin: auto;
+  margin: 2% auto;
   overflow: hidden;
   width: 95%;
-  /* max-height: 216px; */
   background: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
