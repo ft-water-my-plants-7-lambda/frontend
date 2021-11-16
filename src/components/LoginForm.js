@@ -1,9 +1,11 @@
-import axios from 'axios'
 import { useState } from 'react'
+
+import { connect } from 'react-redux'
+import { handleLogin } from '../lib/actions/handleLogin'
 
 const initialCredentials = { username: '', password: '' }
 
-export default function Login() {
+const LoginForm = ({ handleLogin }) => {
   const [credentials, setCredentials] = useState(initialCredentials)
 
   const change = (e) => {
@@ -15,21 +17,28 @@ export default function Login() {
 
   const submit = (e) => {
     e.preventDefault()
+
+    handleLogin(credentials)
   }
 
   return (
     <form onSubmit={submit}>
       <h2>Login</h2>
+
       <label>
         Username:
-        <input onChange={change} name="username" type="text" />
+        <input onChange={change} value={credentials.username} name="username" type="text" />
       </label>
+
       <label>
         Password:
-        <input onChange={change} name="password" type="text" />
+        <input onChange={change} value={credentials.password} name="password" type="password" />
       </label>
-      <button type="submit">Login</button>
-      <button>Forgot Password?</button>
+
+      <button>Login</button>
+      <button type="button">Forgot Password?</button>
     </form>
   )
 }
+
+export default connect(null, { handleLogin })(LoginForm)
