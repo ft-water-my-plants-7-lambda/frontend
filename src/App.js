@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
 
+import Navbar from './components/Navbar'
+
 import { connect } from 'react-redux'
 import { handleInit } from './lib/actions/handleInit'
-
-import Navbar from './components/Navbar'
 
 // pages
 
@@ -36,9 +36,9 @@ const App = ({ handleInit }) => {
           <PrivateRoute path="/logout" component={LogoutPage} />
           <PrivateRoute path="/user" component={UserPage} />
           <PrivateRoute exact path="/plants" component={PlantsPage} />
+          <PrivateRoute exact path="/plants/add" component={AddPlantPage} />
           <PrivateRoute exact path="/plants/:id" component={PlantPage} />
           <PrivateRoute exact path="/plants/:id/edit" component={EditPlantPage} />
-          <PrivateRoute exact path="/plants/add" component={AddPlantPage} />
         </Switch>
       </Router>
     </>
