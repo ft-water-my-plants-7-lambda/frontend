@@ -1,33 +1,21 @@
-import axios from "axios";
-import { useState } from "react";
+import axios from 'axios'
+import { useState } from 'react'
 
-const initialCredentials = { username: "", password: "" };
+const initialCredentials = { username: '', password: '' }
 
 export default function Login() {
-  const [credentials, setCredentials] = useState(initialCredentials);
+  const [credentials, setCredentials] = useState(initialCredentials)
 
   const change = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const name = e.target.name
+    const value = e.target.value
 
-    setCredentials({ ...credentials, [name]: value });
-  };
+    setCredentials({ ...credentials, [name]: value })
+  }
 
   const submit = (e) => {
-    e.preventDefault();
-
-    axios
-      .post(
-        "https://water-my-plants-7-ft.herokuapp.com/api/users/login",
-        credentials
-      )
-      .then((resp) => {
-        console.log(resp);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+    e.preventDefault()
+  }
 
   return (
     <form onSubmit={submit}>
@@ -43,5 +31,5 @@ export default function Login() {
       <button type="submit">Login</button>
       <button>Forgot Password?</button>
     </form>
-  );
+  )
 }
