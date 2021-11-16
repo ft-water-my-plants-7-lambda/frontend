@@ -1,12 +1,12 @@
-import Page from '../components/Page'
-import AddPlants from '../components/Plants/AddPlants'
+import Page from '../components/Page';
+import AddPlants from '../components/Plants/AddPlants';
 
-const AddPlantPage = () => {
+const AddPlantPage = ({ setPlants }) => {
   return (
     <Page>
-      <AddPlants />
+      <AddPlants setPlants={setPlants} />
     </Page>
-  )
-}
+  );
+};
 
-export default AddPlantPage
+export default AddPlantPage;

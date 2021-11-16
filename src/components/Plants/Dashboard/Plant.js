@@ -1,5 +1,6 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import {
   DetailContainer,
   ImageContainer,
@@ -13,40 +14,52 @@ import {
   Button,
 } from './DashboardElements';
 
-const dummyPlantData = [
-  {
-    id: 0,
-    name: 'Plant Name',
-    species: 'Plant Species',
-    freq: 'Every other day',
-    image:
-      'https://images.unsplash.com/photo-1620310252507-c65943dbd411?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=765&q=80',
-  },
-];
-
 const Plant = (props) => {
-  const history = useHistory();
+  const [plant, setPlant] = useState('');
 
-  const handleEdit = () => {
+  const { id } = useParams();
+  const { push } = useHistory();
+
+  useEffect(() => {
+    axios
+      .get(`https://water-my-plants-7-ft.herokuapp.com/api/plants/${id}`)
+      .then((res) => {
+        setPlant(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
+  const handleDelete = () => {
+    axios
+      .delete(`https://water-my-plants-7-ft.herokuapp.com/api/plants/${id}`)
+      .then((res) => {
+        props.setPlants(res.data);
+        push('/plants');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  const handleDelete = () => {};
+  const handleEdit = () => {};
 
   return (
     <DetailContainer>
       <ImageContainer>
-        <Image src={dummyPlantData[0].image} alt={dummyPlantData[0].name} />
+        <Image src={plant.image} alt={plant.name} />
       </ImageContainer>
       <PlantInfo>
         <Label>Name:</Label>
-        <Name>{dummyPlantData[0].name}</Name>
+        <Name>{plant.nickname}</Name>
         <Label>Species:</Label>
-        <Species>{dummyPlantData[0].species}</Species>
+        <Species>{plant.species}</Species>
         <Label>Water Frequency:</Label>
-        <WaterFreq>{dummyPlantData[0].freq}</WaterFreq>
+        <WaterFreq>{plant.h20frequency}</WaterFreq>
         <Buttons>
           <Button>Edit</Button>
-          <Button>Delete</Button>
+          <Button onClick={handleDelete}>Delete</Button>
         </Buttons>
       </PlantInfo>
     </DetailContainer>

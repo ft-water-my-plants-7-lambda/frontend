@@ -1,5 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import styled from 'styled-components';
 
 const Form = styled.form`
   border: 1px solid black;
@@ -9,23 +11,67 @@ const Form = styled.form`
   text-align: center;
 `;
 
-const AddPlants = () => {
+const AddPlants = (props) => {
+  const { push } = useHistory();
+
+  const [plant, setPlant] = useState({
+    nickname: '',
+    species: '',
+    h20frequency: '',
+    image: '',
+  });
+
+  const handleChange = (e) => {
+    setPlant({
+      ...plant,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(`https://water-my-plants-7-ft.herokuapp.com/api/plants`, plant)
+      .then((res) => {
+        props.setPlants(res.data);
+        push(`/plants`);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const { nickname, species, h20frequency } = plant;
+
   return (
     <>
       {/* <h1>Add Plants Form goes here</h1> */}
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <h2>Add Plants</h2>
         <label>
           Plant Name:
-          <input name="name" type="text" />
+          <input
+            name='nickname'
+            type='text'
+            value={nickname}
+            onChange={handleChange}
+          />
         </label>
         <label>
           Plant Species:
-          <input name="species" type="text" />
+          <input
+            name='species'
+            type='text'
+            value={species}
+            onChange={handleChange}
+          />
         </label>
         <label>
           H20 Frequency:
-          <input name="h20freq" type="text" />
+          <input
+            name='h20frequency'
+            type='text'
+            value={h20frequency}
+            onChange={handleChange}
+          />
         </label>
         <label>
           Photo:
