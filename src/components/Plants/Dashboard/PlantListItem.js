@@ -2,11 +2,9 @@ import React from 'react';
 import { ListItems } from './DashboardElements';
 
 const PlantListItem = (props) => {
-  const { plant } = props;
+  const { plant_id, nickname } = props.plant;
 
-  return (
-    <ListItems to={`/plants/${plant.plant_id}`}>{plant.nickname}</ListItems>
-  );
+  return <ListItems to={`/plants/${plant_id}`}>{nickname}</ListItems>;
 };
 
 export default PlantListItem;

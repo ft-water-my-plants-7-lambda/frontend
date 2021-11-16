@@ -30,17 +30,15 @@ const App = ({ handleInit }) => {
   const [plants, setPlants] = useState([]);
 
   useEffect(() => {
-    axios
-      .get('https://water-my-plants-7-ft.herokuapp.com/api/plants')
-      .then((res) => {
-        setPlants(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  const deletePlant = (id) => {
-    setPlants(plants.filter((plant) => plant.plant_id !== id));
-  };
+    if (!plants.length) {
+      axios
+        .get('https://water-my-plants-7-ft.herokuapp.com/api/plants')
+        .then((res) => {
+          setPlants(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [plants]);
 
   return (
     <>
@@ -59,7 +57,7 @@ const App = ({ handleInit }) => {
             <AddPlantPage setPlants={setPlants} />
           </Route>
           <Route exact path='/plants/:id'>
-            <PlantPage plants={plants} deletePlant={deletePlant} />
+            <PlantPage plants={plants} setPlants={setPlants} />
           </Route>
           <Route exact path='/plants/:id/edit'>
             <EditPlantPage setPlants={setPlants} />

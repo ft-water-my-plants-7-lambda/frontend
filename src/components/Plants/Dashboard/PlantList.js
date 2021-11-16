@@ -12,7 +12,7 @@ const PlantList = ({ plants }) => {
     <>
       <WelcomeMessage>Welcome Username</WelcomeMessage>
       <PlantAmount>You have {plants.length} Plants!</PlantAmount>
-      {Array.isArray(plants) && plants && (
+      {plants.length && (
         <PlantListWrapper>
           <PlantListContainer>
             {plants.map((plant) => (
