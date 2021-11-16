@@ -1,24 +1,16 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
-import styled from 'styled-components';
-
-const Form = styled.form`
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  margin: 0 20%;
-  text-align: center;
-`;
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { H2, Form, Label, Input, Button } from "../../FormStyledComponents";
 
 const AddPlants = (props) => {
   const { push } = useHistory();
 
   const [plant, setPlant] = useState({
-    nickname: '',
-    species: '',
-    h20frequency: '',
-    image: '',
+    nickname: "",
+    species: "",
+    h20frequency: "",
+    image: "",
   });
 
   const handleChange = (e) => {
@@ -45,39 +37,39 @@ const AddPlants = (props) => {
     <>
       {/* <h1>Add Plants Form goes here</h1> */}
       <Form onSubmit={handleSubmit}>
-        <h2>Add Plants</h2>
-        <label>
+        <H2>Add Plants</H2>
+        <Label>
           Plant Name:
-          <input
-            name='nickname'
-            type='text'
+          <Input
+            name="nickname"
+            type="text"
             value={nickname}
             onChange={handleChange}
           />
-        </label>
-        <label>
+        </Label>
+        <Label>
           Plant Species:
-          <input
-            name='species'
-            type='text'
+          <Input
+            name="species"
+            type="text"
             value={species}
             onChange={handleChange}
           />
-        </label>
-        <label>
+        </Label>
+        <Label>
           H20 Frequency:
-          <input
-            name='h20frequency'
-            type='text'
+          <Input
+            name="h20frequency"
+            type="text"
             value={h20frequency}
             onChange={handleChange}
           />
-        </label>
-        <label>
+        </Label>
+        <Label>
           Photo:
-          <button>Add Photo</button>
-        </label>
-        <button>Add Plant</button>
+          <Button>Add Photo</Button>
+        </Label>
+        <Button>Add Plant</Button>
       </Form>
     </>
   );
