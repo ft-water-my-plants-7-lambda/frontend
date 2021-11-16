@@ -30,9 +30,16 @@ const AddPlants = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios
+      .post(`https://water-my-plants-7-ft.herokuapp.com/api/plants`, plant)
+      .then((res) => {
+        props.setPlants(res.data);
+        push(`/plants`);
+      })
+      .catch((err) => console.log(err));
   };
 
-  const { name, species, h20frequency } = plant;
+  const { nickname, species, h20frequency } = plant;
 
   return (
     <>
@@ -41,7 +48,12 @@ const AddPlants = (props) => {
         <h2>Add Plants</h2>
         <label>
           Plant Name:
-          <input name='name' type='text' value={name} onChange={handleChange} />
+          <input
+            name='nickname'
+            type='text'
+            value={nickname}
+            onChange={handleChange}
+          />
         </label>
         <label>
           Plant Species:
