@@ -1,10 +1,10 @@
 import Page from '../components/Page'
-import Register from '../components/Register'
+import RegisterForm from '../components/RegisterForm'
 
 const RegisterPage = () => {
   return (
     <Page>
-      <Register />
+      <RegisterForm />
     </Page>
   )
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router'
 
 import { connect } from 'react-redux'
 import { handleLogin } from '../lib/actions/handleLogin'
@@ -6,6 +7,8 @@ import { handleLogin } from '../lib/actions/handleLogin'
 const initialCredentials = { username: '', password: '' }
 
 const LoginForm = ({ handleLogin }) => {
+  const { push } = useHistory()
+
   const [credentials, setCredentials] = useState(initialCredentials)
 
   const change = (e) => {
@@ -19,6 +22,7 @@ const LoginForm = ({ handleLogin }) => {
     e.preventDefault()
 
     handleLogin(credentials)
+    push('/plants')
   }
 
   return (
