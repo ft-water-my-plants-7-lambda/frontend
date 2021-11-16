@@ -28,12 +28,12 @@ export default function App() {
           <Route exact path="/" component={LandingPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
-          <Route path="/logout" component={LogoutPage} />
-          <Route path="/user" component={UserPage} />
-          <Route exact path="/plants" component={PlantsPage} />
-          <Route path="/plants/:id" component={PlantPage} />
-          <Route path="/plants/:id/edit" component={EditPlantPage} />
-          <PrivateRoute exat path="/plants/add" component={AddPlantPage} />
+          <PrivateRoute path="/logout" component={LogoutPage} />
+          <PrivateRoute path="/user" component={UserPage} />
+          <PrivateRoute exact path="/plants" component={PlantsPage} />
+          <PrivateRoute exact path="/plants/:id" component={PlantPage} />
+          <PrivateRoute exact path="/plants/:id/edit" component={EditPlantPage} />
+          <PrivateRoute exact path="/plants/add" component={AddPlantPage} />
         </Switch>
       </Router>
     </>
