@@ -1,10 +1,14 @@
 import axios from 'axios'
 
+import { API_URL } from '../config'
+
 export const login = async (user) => {
   try {
-    const res = await axios.post('https://water-my-plants-7-ft.herokuapp.com/api/users/login', user)
+    const { data } = await axios.post(`${API_URL}/users/login`, user)
 
-    return res
+    localStorage.setItem('token', data.token)
+
+    return data
   } catch (err) {
     return err
   }

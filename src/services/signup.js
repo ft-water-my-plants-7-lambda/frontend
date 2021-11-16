@@ -1,3 +1,13 @@
 import axios from 'axios'
 
-export const signup = (user) => null
+import { API_URL } from '../config'
+
+export const signup = async (user) => {
+  try {
+    const { data } = await axios.post(`${API_URL}/users/signup`, user)
+
+    return data
+  } catch (err) {
+    return err
+  }
+}
