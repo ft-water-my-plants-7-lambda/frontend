@@ -1,12 +1,12 @@
 import { resetErrors, startAPICall, handleError, endAPICall } from '.'
 import { services } from '../../services'
 
-export const handleSignup = (user) => async (dispatch) => {
+export const handleRegister = (user) => async (dispatch) => {
   dispatch(resetErrors())
   dispatch(startAPICall())
 
   try {
-    const { username, phoneNumber } = await services.signup(user)
+    const { username, phoneNumber } = await services.register(user)
 
     return { username, phoneNumber }
   } catch (err) {

@@ -1,13 +1,15 @@
-import axios from 'axios';
+import axios from 'axios'
+
+import { API_URL } from '../config'
 
 const axiosWithAuth = () => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token')
   return axios.create({
     headers: {
       authorization: token,
     },
-    baseURL: 'https://water-my-plants-7-ft.herokuapp.com/api',
-  });
-};
+    baseURL: API_URL,
+  })
+}
 
-export default axiosWithAuth;
+export default axiosWithAuth
