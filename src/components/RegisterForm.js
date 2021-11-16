@@ -1,48 +1,50 @@
-import { useState } from 'react'
-import { useHistory } from 'react-router'
+import { useState } from "react";
+import { useHistory } from "react-router";
 
-import { connect } from 'react-redux'
-import { handleRegister } from '../lib/actions/handleRegister'
+import { connect } from "react-redux";
+import { handleRegister } from "../lib/actions/handleRegister";
 
-const initialCredentials = { username: '', /* phoneNumber: "",*/ password: '' }
+import { H2, Form, Label, Input, Button } from "./FormStyledComponents";
+
+const initialCredentials = { username: "", /* phoneNumber: "",*/ password: "" };
 
 const RegisterForm = ({ handleRegister }) => {
-  const { push } = useHistory()
+  const { push } = useHistory();
 
-  const [credentials, setCredentials] = useState(initialCredentials)
+  const [credentials, setCredentials] = useState(initialCredentials);
 
   const change = (e) => {
-    const name = e.target.name
-    const value = e.target.value
+    const name = e.target.name;
+    const value = e.target.value;
 
-    setCredentials({ ...credentials, [name]: value })
-  }
+    setCredentials({ ...credentials, [name]: value });
+  };
 
   const submit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    await handleRegister(credentials)
-    push('/login')
-  }
+    await handleRegister(credentials);
+    push("/login");
+  };
 
   return (
-    <form onSubmit={submit}>
-      <h2>Registration</h2>
-      <label>
+    <Form onSubmit={submit}>
+      <H2>Registration</H2>
+      <Label>
         Username:
-        <input onChange={change} name="username" type="text" />
-      </label>
+        <Input onChange={change} name="username" type="text" />
+      </Label>
       {/* <label>
         Phone Number:
         <input></input>
       </label> */}
-      <label>
+      <Label>
         Password:
-        <input onChange={change} name="password" type="text" />
-      </label>
-      <button type="submit">Sign Up</button>
-    </form>
-  )
-}
+        <Input onChange={change} name="password" type="text" />
+      </Label>
+      <Button type="submit">Sign Up</Button>
+    </Form>
+  );
+};
 
-export default connect(null, { handleRegister })(RegisterForm)
+export default connect(null, { handleRegister })(RegisterForm);
