@@ -9,6 +9,7 @@ export const Nav = styled.nav`
   align-items: center;
   font-size: 1rem;
   z-index: 10;
+  margin-bottom: 2%;
   @media (max-width: 960px) {
     transition: 0.8s all ease;
   }
