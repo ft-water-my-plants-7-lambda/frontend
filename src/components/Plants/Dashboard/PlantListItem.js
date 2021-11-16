@@ -1,12 +1,11 @@
 import React from 'react';
 import { ListItems } from './DashboardElements';
 
-const PlantListItem = ({plant}) => {
+const PlantListItem = (props) => {
+  const { plant } = props;
 
   return (
-    <ListItems to={`/plants/${plant.id}`}>
-      {plant.name}
-    </ListItems>
+    <ListItems to={`/plants/${plant.plant_id}`}>{plant.nickname}</ListItems>
   );
 };
 

@@ -1,12 +1,12 @@
-import Page from '../components/Page'
-import EditPlants from '../components/Plants/EditPlants'
+import Page from '../components/Page';
+import EditPlants from '../components/Plants/EditPlants';
 
-const EditPlantPage = () => {
+const EditPlantPage = ({ setPlants }) => {
   return (
     <Page>
-      <EditPlants />
+      <EditPlants setPlants={setPlants} />
     </Page>
-  )
-}
+  );
+};
 
-export default EditPlantPage
+export default EditPlantPage;
