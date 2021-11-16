@@ -1,4 +1,5 @@
 export const ACTIONS = {
+  INIT: 'INIT',
   RESET_ERRORS: 'RESET_ERRORS',
   START_API_CALL: 'START_API_CALL',
   END_API_CALL: 'END_API_CALL',
@@ -9,6 +10,11 @@ export const ACTIONS = {
   DELETE_PLANT: 'DELETE_PLANT',
   HANDLE_ERROR: 'HANDLE_ERROR',
 }
+
+export const init = ({ username, phoneNumber }) => ({
+  type: ACTIONS.INIT,
+  payload: { username, phoneNumber },
+})
 
 export const resetErrors = () => ({ type: ACTIONS.RESET_ERRORS })
 

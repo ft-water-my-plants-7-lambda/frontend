@@ -7,6 +7,8 @@ export const login = async (user) => {
     const { data } = await axios.post(`${API_URL}/users/login`, user)
 
     localStorage.setItem('token', data.token)
+    localStorage.setItem('username', data.username)
+    localStorage.setItem('phoneNumber', data.phoneNumber)
 
     return data
   } catch (err) {

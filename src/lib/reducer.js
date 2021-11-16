@@ -19,6 +19,17 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ACTIONS.INIT:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          isAuthenticated: true,
+          username: action.payload.username,
+          phoneNumber: action.payload.phoneNumber,
+        },
+      }
+
     case ACTIONS.RESET_ERRORS:
       return {
         ...state,

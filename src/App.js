@@ -1,6 +1,9 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
+
+import { connect } from 'react-redux'
+import { handleInit } from './lib/actions/handleInit'
 
 import Navbar from './components/Navbar'
 
@@ -19,7 +22,9 @@ import PlantPage from './pages/PlantPage'
 import EditPlantPage from './pages/EditPlantPage'
 import AddPlantPage from './pages/AddPlantPage'
 
-export default function App() {
+const App = ({ handleInit }) => {
+  useEffect(() => handleInit(), [handleInit])
+
   return (
     <>
       <Router>
@@ -39,3 +44,5 @@ export default function App() {
     </>
   )
 }
+
+export default connect(null, { handleInit })(App)
