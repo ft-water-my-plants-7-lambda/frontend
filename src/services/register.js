@@ -6,6 +6,6 @@ export const register = async (user) => {
   try {
     await axios.post(`${API_URL}/users/register`, user);
   } catch (err) {
-    return err;
+    throw new Error('register error');
   }
 };

@@ -40,10 +40,10 @@ const App = ({ isAuthenticated, handleInit, handleGetAllPlants }) => {
           <Route path="/register" component={RegisterPage} />
           <PrivateRoute path="/logout" component={LogoutPage} />
           <PrivateRoute path="/user" component={UserPage} />
-          <Route exact path="/plants" component={PlantsPage} />
-          <Route exact path="/plants/add" component={AddPlantPage} />
-          <Route exact path="/plants/:id" component={PlantPage} />
-          <Route exact path="/plants/edit/:id" component={EditPlantPage} />
+          <PrivateRoute exact path="/plants" component={PlantsPage} />
+          <PrivateRoute exact path="/plants/add" component={AddPlantPage} />
+          <PrivateRoute exact path="/plants/:id" component={PlantPage} />
+          <PrivateRoute exact path="/plants/edit/:id" component={EditPlantPage} />
         </Switch>
       </Router>
     </>

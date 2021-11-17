@@ -1,18 +1,16 @@
-import { resetErrors, startAPICall, updateUser, handleError, endAPICall } from '.';
+import { resetError, startAPICall, updateUser, handleError, endAPICall } from '.';
 import { services } from '../../services';
 
-export const handleUpdateUser = (user) => async (dispatch) => {
-  dispatch(resetErrors());
+export const handleUpdateUser = (userId, user) => async (dispatch) => {
+  dispatch(resetError());
   dispatch(startAPICall());
 
   try {
-    const updatedUser = await services.updateUser(user);
+    await services.updateUser(userId, user);
 
     dispatch(updateUser(user));
-
-    return updatedUser;
   } catch (err) {
-    dispatch(handleError({ value: 'update', message: err.message }));
+    dispatch(handleError(err));
   } finally {
     dispatch(endAPICall());
   }

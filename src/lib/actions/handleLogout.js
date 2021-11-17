@@ -1,15 +1,15 @@
-import { resetErrors, startAPICall, logoutSuccess, handleError, endAPICall } from '.';
+import { resetError, startAPICall, logoutSuccess, handleError, endAPICall } from '.';
 import { services } from '../../services';
 
 export const handleLogout = () => async (dispatch) => {
-  dispatch(resetErrors());
+  dispatch(resetError());
   dispatch(startAPICall());
 
   try {
     await services.logout();
     dispatch(logoutSuccess());
   } catch (err) {
-    dispatch(handleError({ value: 'validation', message: err.message }));
+    dispatch(handleError(err));
   } finally {
     dispatch(endAPICall());
   }

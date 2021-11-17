@@ -9,6 +9,6 @@ export const logout = async () => {
     localStorage.removeItem('username');
     localStorage.removeItem('phoneNumber');
   } catch (err) {
-    return err;
+    throw new Error('logout error');
   }
 };

@@ -1,15 +1,15 @@
-import { resetErrors, startAPICall, editPlant, handleError, endAPICall } from '.';
+import { resetError, startAPICall, editPlant, handleError, endAPICall } from '.';
 import { services } from '../../services';
 
 export const handleEditPlant = (plant) => async (dispatch) => {
-  dispatch(resetErrors());
+  dispatch(resetError());
   dispatch(startAPICall());
 
   try {
     const res = await services.editPlant(plant);
     dispatch(editPlant(res.data));
   } catch (err) {
-    dispatch(handleError({ value: 'create', message: err.message }));
+    dispatch(handleError(err));
   } finally {
     dispatch(endAPICall());
   }

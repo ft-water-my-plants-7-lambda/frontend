@@ -1,6 +1,6 @@
 export const ACTIONS = {
   INIT: 'INIT',
-  RESET_ERRORS: 'RESET_ERRORS',
+
   START_API_CALL: 'START_API_CALL',
   END_API_CALL: 'END_API_CALL',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
@@ -10,12 +10,13 @@ export const ACTIONS = {
   ADD_PLANT: 'ADD_PLANT',
   EDIT_PLANT: 'EDIT_PLANT',
   DELETE_PLANT: 'DELETE_PLANT',
+  RESET_ERROR: 'RESET_ERROR',
   HANDLE_ERROR: 'HANDLE_ERROR',
 };
 
 export const init = (user) => ({ type: ACTIONS.INIT, payload: user });
 
-export const resetErrors = () => ({ type: ACTIONS.RESET_ERRORS });
+export const resetError = () => ({ type: ACTIONS.RESET_ERROR });
 
 export const startAPICall = () => ({ type: ACTIONS.START_API_CALL });
 export const endAPICall = () => ({ type: ACTIONS.END_API_CALL });
@@ -31,10 +32,4 @@ export const addPlant = (plant) => ({ type: ACTIONS.ADD_PLANT, payload: plant })
 export const editPlant = (plant) => ({ type: ACTIONS.EDIT_PLANT, payload: plant });
 export const deletePlant = (plantId) => ({ type: ACTIONS.DELETE_PLANT, payload: plantId });
 
-// pass an object i.e. { value: 'update', message: '404' }
-// value should have value of 'validation', 'create', 'update', or 'delete'
-// message should be the text of the error i.e. '404 - page not found'
-export const handleError = (error) => ({
-  type: ACTIONS.HANDLE_ERROR,
-  payload: error,
-});
+export const handleError = (error) => ({ type: ACTIONS.HANDLE_ERROR, payload: error });

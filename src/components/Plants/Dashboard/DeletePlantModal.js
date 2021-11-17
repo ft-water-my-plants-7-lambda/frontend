@@ -21,7 +21,7 @@ const DeleteMovieModal = (props) => {
   return (
     <ModalContainer>
       <ModalContent>
-        <form>
+        <section>
           <div>
             <ModalWarningText>Are you sure you want to delete this plant?</ModalWarningText>
             <SmallText>This action cannot be undone.</SmallText>
@@ -30,7 +30,7 @@ const DeleteMovieModal = (props) => {
             <Button onClick={handleCancel}>Cancel</Button>
             <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
           </div>
-        </form>
+        </section>
       </ModalContent>
     </ModalContainer>
   );

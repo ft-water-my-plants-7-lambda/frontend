@@ -6,6 +6,6 @@ export const editPlant = async (plant) => {
     console.log(res);
     return res;
   } catch (err) {
-    return err;
+    throw new Error('edit plant error');
   }
 };
