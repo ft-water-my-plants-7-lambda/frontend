@@ -10,7 +10,6 @@ import { handleInit } from './lib/actions/handleInit';
 // pages
 
 // auth
-
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';

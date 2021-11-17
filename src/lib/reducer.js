@@ -3,9 +3,9 @@ import { ACTIONS } from './actions';
 const initialState = {
   user: {
     isAuthenticated: false,
-    id: '',
-    username: '',
-    phoneNumber: '',
+    user_id: null,
+    username: null,
+    phoneNumber: null,
   },
   plants: [],
   isLoading: false,
@@ -26,7 +26,7 @@ export const reducer = (state = initialState, action) => {
         user: {
           ...state.user,
           isAuthenticated: true,
-          id: action.payload.id,
+          user_id: action.payload.user_id,
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
@@ -61,7 +61,7 @@ export const reducer = (state = initialState, action) => {
         user: {
           ...state.user,
           isAuthenticated: true,
-          id: action.payload.id,
+          user_id: action.payload.user_id,
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
@@ -73,8 +73,9 @@ export const reducer = (state = initialState, action) => {
         user: {
           ...state.user,
           isAuthenticated: false,
-          username: '',
-          phoneNumber: '',
+          user_id: null,
+          username: null,
+          phoneNumber: null,
         },
       };
 
@@ -83,7 +84,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         user: {
           ...state.user,
-          id: action.payload.id,
+          user_id: action.payload.user_id,
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
