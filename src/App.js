@@ -59,7 +59,7 @@ const App = ({ handleInit }) => {
           <Route exact path='/plants/:id'>
             <PlantPage plants={plants} setPlants={setPlants} />
           </Route>
-          <Route exact path='/plants/:id/edit'>
+          <Route exact path='/plants/edit/:id'>
             <EditPlantPage setPlants={setPlants} />
           </Route>
         </Switch>
