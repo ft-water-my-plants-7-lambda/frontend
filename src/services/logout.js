@@ -1,13 +1,13 @@
-import axiosWithAuth from '../utils/axiosWithAuth'
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 export const logout = async (user) => {
   try {
-    const res = await axiosWithAuth().get('/users/logout')
+    const res = await axiosWithAuth().get('/users/logout');
 
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
 
-    return res
+    return res;
   } catch (err) {
-    return err
+    return err;
   }
-}
+};

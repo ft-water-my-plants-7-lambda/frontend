@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import {
   WelcomeMessage,
   PlantAmount,
@@ -7,7 +7,14 @@ import {
 } from './DashboardElements';
 import PlantListItem from './PlantListItem';
 
-const PlantList = ({ plants }) => {
+const PlantList = () => {
+  const [plants, setPlants] = useState([]);
+
+  useEffect(() => {
+    // const { plants: plantsData } = handleGetAllPlants();
+    // setPlants(plantsData)
+  }, []);
+
   return (
     <>
       <WelcomeMessage>Welcome Username</WelcomeMessage>
@@ -16,7 +23,7 @@ const PlantList = ({ plants }) => {
         <PlantListWrapper>
           <PlantListContainer>
             {plants.map((plant) => (
-              <PlantListItem key={plant.plant_id} plant={plant} />
+              <PlantListItem key={plant.plant_id} {...plant} />
             ))}
           </PlantListContainer>
         </PlantListWrapper>

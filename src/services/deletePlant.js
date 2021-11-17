@@ -1,9 +1,9 @@
-import axiosWithAuth from '../utils/axiosWithAuth'
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 export const deletePlant = (plantId) => {
   try {
-    return axiosWithAuth().delete(`/plants/${plantId}`)
+    return axiosWithAuth().delete(`/plants/${plantId}`);
   } catch (err) {
-    return err
+    return err;
   }
-}
+};

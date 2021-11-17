@@ -1,7 +1,7 @@
 import { resetErrors, startAPICall, handleError, endAPICall } from '.';
 import { services } from '../../services';
 
-export const handleCreatePlant = (plant, callback) => async (dispatch) => {
+export const handleEditPlant = (plant, callback) => async (dispatch) => {
   dispatch(resetErrors());
   dispatch(startAPICall());
 

@@ -1,9 +1,9 @@
-import axiosWithAuth from '../utils/axiosWithAuth'
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 export const getPlants = async () => {
   try {
-    return await axiosWithAuth().get('/plants')
+    return await axiosWithAuth().get('/plants');
   } catch (err) {
-    return err
+    return err;
   }
-}
+};

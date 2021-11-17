@@ -1,15 +1,15 @@
-import axiosWithAuth from '../utils/axiosWithAuth'
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 export const updateUser = async (user) => {
   try {
-    const { id: userId } = user
+    const { id: userId } = user;
 
-    const res = await axiosWithAuth().put(`/users/${userId}`, user)
+    const res = await axiosWithAuth().put(`/users/${userId}`, user);
 
-    console.log(res)
+    console.log(res);
 
-    return res
+    return res;
   } catch (err) {
-    return err
+    return err;
   }
-}
+};

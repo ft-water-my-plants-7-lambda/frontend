@@ -1,4 +1,4 @@
-import { ACTIONS } from './actions'
+import { ACTIONS } from './actions';
 
 const initialState = {
   user: {
@@ -7,6 +7,7 @@ const initialState = {
     username: '',
     phoneNumber: '',
   },
+  plants: [],
   isLoading: false,
   errors: {
     validation: '',
@@ -15,7 +16,7 @@ const initialState = {
     update: '',
     delete: '',
   },
-}
+};
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -29,7 +30,7 @@ export const reducer = (state = initialState, action) => {
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
-      }
+      };
 
     case ACTIONS.RESET_ERRORS:
       return {
@@ -40,19 +41,19 @@ export const reducer = (state = initialState, action) => {
           update: '',
           delete: '',
         },
-      }
+      };
 
     case ACTIONS.START_API_CALL:
       return {
         ...state,
         isLoading: true,
-      }
+      };
 
     case ACTIONS.END_API_CALL:
       return {
         ...state,
         isLoading: false,
-      }
+      };
 
     case ACTIONS.LOGIN_SUCCESS:
       return {
@@ -64,7 +65,7 @@ export const reducer = (state = initialState, action) => {
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
-      }
+      };
 
     case ACTIONS.LOGOUT_SUCCESS:
       return {
@@ -75,7 +76,7 @@ export const reducer = (state = initialState, action) => {
           username: '',
           phoneNumber: '',
         },
-      }
+      };
 
     case ACTIONS.UPDATE_USER:
       return {
@@ -86,10 +87,22 @@ export const reducer = (state = initialState, action) => {
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
-      }
+      };
+
+    case ACTIONS.SET_PLANTS:
+      return {
+        ...state,
+        plants: action.payload,
+      };
+
+    case ACTIONS.ADD_PLANT:
+      return {
+        ...state,
+        plants: [...state.plants, action.payload],
+      };
 
     case ACTIONS.HANDLE_ERROR:
-      const [error, message] = action.payload
+      const [error, message] = action.payload;
 
       return {
         ...state,
@@ -97,9 +110,9 @@ export const reducer = (state = initialState, action) => {
           ...state.errors,
           [error]: message,
         },
-      }
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};

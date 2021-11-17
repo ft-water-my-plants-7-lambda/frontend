@@ -21,26 +21,12 @@ const Plant = (props) => {
   const { push } = useHistory();
 
   useEffect(() => {
-    axios
-      .get(`https://water-my-plants-7-ft.herokuapp.com/api/plants/${id}`)
-      .then((res) => {
-        setPlant(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // handleGetPlant(id)
   });
 
   const handleDelete = () => {
-    axios
-      .delete(`https://water-my-plants-7-ft.herokuapp.com/api/plants/${id}`)
-      .then((res) => {
-        props.setPlants(res.data);
-        push('/plants');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // handleDeletePlant(id)
+    // push('.plants')
   };
 
   const handleEdit = () => {

@@ -1,9 +1,7 @@
 import React from 'react';
 import { ListItems } from './DashboardElements';
 
-const PlantListItem = (props) => {
-  const { plant_id, nickname } = props.plant;
-
+const PlantListItem = ({ plant_id, nickname }) => {
   return <ListItems to={`/plants/${plant_id}`}>{nickname}</ListItems>;
 };
 

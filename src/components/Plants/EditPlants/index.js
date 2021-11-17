@@ -15,14 +15,7 @@ const AddPlants = (props) => {
   });
 
   useEffect(() => {
-    axios
-      .get(`https://water-my-plants-7-ft.herokuapp.com/api/plants/${id}`)
-      .then((res) => {
-        setPlant(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // handleGetPlantById()
   }, [id]);
 
   const handleChange = (e) => {
@@ -34,13 +27,7 @@ const AddPlants = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .put(`https://water-my-plants-7-ft.herokuapp.com/api/plants/${id}`, plant)
-      .then((res) => {
-        props.setPlants(res.data);
-        push(`/plants/${id}`);
-      })
-      .catch((err) => console.log(err));
+    // handleEditPlant
   };
 
   const showWidget = (widget) => {
@@ -77,30 +64,15 @@ const AddPlants = (props) => {
         <H2>Edit Plants</H2>
         <Label>
           Plant Name:
-          <Input
-            name='nickname'
-            type='text'
-            value={nickname}
-            onChange={handleChange}
-          />
+          <Input name="nickname" type="text" value={nickname} onChange={handleChange} />
         </Label>
         <Label>
           Plant Species:
-          <Input
-            name='species'
-            type='text'
-            value={species}
-            onChange={handleChange}
-          />
+          <Input name="species" type="text" value={species} onChange={handleChange} />
         </Label>
         <Label>
           H20 Frequency:
-          <Input
-            name='h20frequency'
-            type='text'
-            value={h20frequency}
-            onChange={handleChange}
-          />
+          <Input name="h20frequency" type="text" value={h20frequency} onChange={handleChange} />
         </Label>
         <Label>
           Photo:

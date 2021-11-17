@@ -1,10 +1,10 @@
 import Page from '../components/Page';
 import EditPlants from '../components/Plants/EditPlants';
 
-const EditPlantPage = ({ setPlants }) => {
+const EditPlantPage = () => {
   return (
     <Page>
-      <EditPlants setPlants={setPlants} />
+      <EditPlants />
     </Page>
   );
 };

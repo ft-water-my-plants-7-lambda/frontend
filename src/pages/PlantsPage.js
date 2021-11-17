@@ -1,10 +1,10 @@
 import Page from '../components/Page';
 import Plants from '../components/Plants/Dashboard/PlantList';
 
-const PlantsPage = ({ plants }) => {
+const PlantsPage = () => {
   return (
     <Page>
-      <Plants plants={plants} />
+      <Plants />
     </Page>
   );
 };
