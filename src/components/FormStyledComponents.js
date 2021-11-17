@@ -24,14 +24,6 @@ export const Label = styled.label`
   flex-direction: column;
   margin: 3% 0;
   text-align: start;
-
-  ${(props) =>
-    props.button &&
-    `
-    flex-direction: row;    
-    align-items:center;
-    
-  `}
 `;
 
 export const Input = styled.input`
@@ -43,6 +35,7 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   padding: 4% 0;
+  margin: 4% 0;
   width: 100%;
   align-self: center;
   border: 2px solid white;
@@ -58,9 +51,21 @@ export const Button = styled.button`
     border: 2px solid black;
     transition: ease-in 0.2s;
   }
+
+  :disabled {
+    color: rgba(230, 230, 230, 1);
+    background-color: rgba(44, 163, 113, 1);
+    border: 2px solid white;
+  }
 `;
 
 export const A = styled.a`
   font-size: 0.8rem;
   margin-bottom: 4%;
+`;
+
+export const P = styled.p`
+  font-size: 0.7rem;
+  align-self: center;
+  color: red;
 `;
