@@ -31,7 +31,7 @@ const AddPlants = (props) => {
       .catch((err) => console.log(err));
   };
 
-  const { nickname, species, h20frequency } = plant;
+  const { nickname, species, h20frequency, image } = plant;
 
   return (
     <>
@@ -67,7 +67,12 @@ const AddPlants = (props) => {
         </Label>
         <Label>
           Photo:
-          <Button>Add Photo</Button>
+          <Input
+            name="image"
+            type="text"
+            value={image}
+            onChange={handleChange}
+          />
         </Label>
         <Button>Add Plant</Button>
       </Form>
