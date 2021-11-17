@@ -2,11 +2,11 @@ import axiosWithAuth from '../utils/axiosWithAuth'
 
 export const logout = async (user) => {
   try {
-    const { data } = await axiosWithAuth().get('/users/logout')
+    const res = await axiosWithAuth().get('/users/logout')
 
     localStorage.removeItem('token')
 
-    return data
+    return res
   } catch (err) {
     return err
   }

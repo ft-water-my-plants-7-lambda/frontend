@@ -12,7 +12,7 @@ export const handleLogout = (user) => async (dispatch) => {
 
     return { username, phoneNumber }
   } catch (err) {
-    dispatch(handleError({ error: 'validation', message: err.message }))
+    dispatch(handleError({ value: 'validation', message: err.message }))
   } finally {
     dispatch(endAPICall())
   }

@@ -1,18 +1,16 @@
-import { resetErrors, startAPICall, updatePlants, handleError, endAPICall } from '.'
+import { resetErrors, startAPICall, handleError, endAPICall } from '.'
 import { services } from '../../services'
 
-export const handleGetAllPlants = () => async (dispatch) => {
+export const handleGetAllPlants = (callback) => async (dispatch) => {
   dispatch(resetErrors())
   dispatch(startAPICall())
 
   try {
     const plants = await services.getPlants()
 
-    dispatch(updatePlants(plants))
-
-    return plants
+    callback(plants)
   } catch (err) {
-    dispatch(handleError({ error: 'get', message: err.message }))
+    dispatch(handleError({ value: 'get', message: err.message }))
   } finally {
     dispatch(endAPICall())
   }

@@ -7,6 +7,7 @@ export const handleInit = (user) => async (dispatch) => {
 
   const username = localStorage.getItem('username')
   const phoneNumber = localStorage.getItem('phoneNumber')
+  const id = localStorage.getItem('id')
 
-  dispatch(init({ username, phoneNumber }))
+  dispatch(init({ username, phoneNumber, id }))
 }

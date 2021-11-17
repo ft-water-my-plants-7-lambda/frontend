@@ -3,10 +3,10 @@ import { ACTIONS } from './actions'
 const initialState = {
   user: {
     isAuthenticated: false,
+    id: '',
     username: '',
     phoneNumber: '',
   },
-  plants: [],
   isLoading: false,
   errors: {
     validation: '',
@@ -25,6 +25,7 @@ export const reducer = (state = initialState, action) => {
         user: {
           ...state.user,
           isAuthenticated: true,
+          id: action.payload.id,
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
@@ -59,6 +60,7 @@ export const reducer = (state = initialState, action) => {
         user: {
           ...state.user,
           isAuthenticated: true,
+          id: action.payload.id,
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
@@ -80,23 +82,10 @@ export const reducer = (state = initialState, action) => {
         ...state,
         user: {
           ...state.user,
+          id: action.payload.id,
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
-      }
-
-    case ACTIONS.UPDATE_PLANTS:
-      return {
-        ...state,
-        plants: [...state.plants, action.payload],
-      }
-
-    case ACTIONS.DELETE_PLANT:
-      const plants = state.plants.filter((plant) => plant.id !== action.payload)
-
-      return {
-        ...state,
-        plants: plants,
       }
 
     case ACTIONS.HANDLE_ERROR:

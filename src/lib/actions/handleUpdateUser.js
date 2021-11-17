@@ -12,7 +12,7 @@ export const handleUpdateUser = (user) => async (dispatch) => {
 
     return updatedUser
   } catch (err) {
-    dispatch(handleError({ error: 'update', message: err.message }))
+    dispatch(handleError({ value: 'update', message: err.message }))
   } finally {
     dispatch(endAPICall())
   }

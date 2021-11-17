@@ -6,13 +6,13 @@ export const handleLogin = (user) => async (dispatch) => {
   dispatch(startAPICall())
 
   try {
-    const { username, phoneNumber } = await services.login(user)
+    const { username, phoneNumber, id } = await services.login(user)
 
-    dispatch(loginSuccess({ username, phoneNumber }))
+    dispatch(loginSuccess({ username, phoneNumber, id }))
 
     return { username, phoneNumber }
   } catch (err) {
-    dispatch(handleError({ error: 'validation', message: err.message }))
+    dispatch(handleError({ value: 'validation', message: err.message }))
   } finally {
     dispatch(endAPICall())
   }

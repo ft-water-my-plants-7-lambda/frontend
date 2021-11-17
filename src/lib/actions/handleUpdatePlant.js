@@ -12,7 +12,7 @@ export const handleUpdatePlant = (plant) => async (dispatch) => {
 
     return plants
   } catch (err) {
-    dispatch(handleError({ error: 'update', message: err.message }))
+    dispatch(handleError({ value: 'update', message: err.message }))
   } finally {
     dispatch(endAPICall())
   }
