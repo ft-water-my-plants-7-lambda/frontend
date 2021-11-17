@@ -14,8 +14,11 @@ import {
   Button,
 } from './DashboardElements';
 
+import DeleteMovieModal from './DeletePlantModal';
+
 const Plant = (props) => {
   const [plant, setPlant] = useState('');
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const { id } = useParams();
   const { push } = useHistory();
@@ -31,11 +34,16 @@ const Plant = (props) => {
       });
   });
 
+  const handleModal = () => {
+    setDeleteModal(!deleteModal);
+  };
+
   const handleDelete = () => {
     axios
       .delete(`https://water-my-plants-7-ft.herokuapp.com/api/plants/${id}`)
       .then((res) => {
         props.setPlants(res.data);
+        setDeleteModal(false);
         push('/plants');
       })
       .catch((err) => {
@@ -43,28 +51,40 @@ const Plant = (props) => {
       });
   };
 
+  const cancelDelete = () => {
+    setDeleteModal(false);
+  };
+
   const handleEdit = () => {
     push(`/plants/edit/${id}`);
   };
 
   return (
-    <DetailContainer>
-      <ImageContainer>
-        <Image src={plant.image} alt={plant.name} />
-      </ImageContainer>
-      <PlantInfo>
-        <Label>Name:</Label>
-        <Name>{plant.nickname}</Name>
-        <Label>Species:</Label>
-        <Species>{plant.species}</Species>
-        <Label>Water Frequency:</Label>
-        <WaterFreq>{plant.h20frequency}</WaterFreq>
-        <Buttons>
-          <Button onClick={handleEdit}>Edit</Button>
-          <Button onClick={handleDelete}>Delete</Button>
-        </Buttons>
-      </PlantInfo>
-    </DetailContainer>
+    <>
+      <DetailContainer>
+        <ImageContainer>
+          <Image src={plant.image} alt={plant.name} />
+        </ImageContainer>
+        <PlantInfo>
+          <Label>Name:</Label>
+          <Name>{plant.nickname}</Name>
+          <Label>Species:</Label>
+          <Species>{plant.species}</Species>
+          <Label>Water Frequency:</Label>
+          <WaterFreq>{plant.h20frequency}</WaterFreq>
+          <Buttons>
+            <Button onClick={handleEdit}>Edit</Button>
+            <Button onClick={handleModal}>Delete</Button>
+          </Buttons>
+        </PlantInfo>
+      </DetailContainer>
+      {deleteModal && (
+        <DeleteMovieModal
+          handleDelete={handleDelete}
+          cancelDelete={cancelDelete}
+        />
+      )}
+    </>
   );
 };
 
