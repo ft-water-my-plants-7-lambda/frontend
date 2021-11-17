@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { useHistory } from "react-router";
+import { useState } from 'react';
+import { useHistory } from 'react-router';
 
-import { connect } from "react-redux";
-import { handleLogin } from "../lib/actions/handleLogin";
-import { H2, Form, Label, Input, Button, A, Div } from "./FormStyledComponents";
+import { connect } from 'react-redux';
+import { handleLogin } from '../lib/actions/handleLogin';
+import { H2, Form, Label, Input, Button, A, Div } from './FormStyledComponents';
 
-import { BsFillPersonFill } from "react-icons/bs";
-import { AiFillLock } from "react-icons/ai";
+import { BsFillPersonFill } from 'react-icons/bs';
+import { AiFillLock } from 'react-icons/ai';
 
-const initialCredentials = { username: "", password: "" };
+const initialCredentials = { username: '', password: '' };
 const iconStyle = {
-  width: "10%",
-  margin: "0.4rem 0",
-  alignSelf: "center",
-  fill: "rgba(0,0,0,0.7)",
+  width: '10%',
+  margin: '0.4rem 0',
+  alignSelf: 'center',
+  fill: 'rgba(0,0,0,0.7)',
 };
 
 const LoginForm = ({ handleLogin }) => {
@@ -32,7 +32,7 @@ const LoginForm = ({ handleLogin }) => {
     e.preventDefault();
 
     await handleLogin(credentials);
-    push("/plants");
+    push('/plants');
   };
 
   return (
@@ -42,13 +42,7 @@ const LoginForm = ({ handleLogin }) => {
         Username:
         <Div>
           <BsFillPersonFill style={iconStyle} />
-          <Input
-            onChange={change}
-            value={credentials.username}
-            name="username"
-            type="text"
-            login
-          />
+          <Input onChange={change} value={credentials.username} name="username" type="text" login />
         </Div>
       </Label>
 

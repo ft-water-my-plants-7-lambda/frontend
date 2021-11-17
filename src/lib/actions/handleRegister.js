@@ -1,8 +1,8 @@
-import { resetErrors, startAPICall, handleError, endAPICall } from '.';
+import { resetError, startAPICall, handleError, endAPICall } from '.';
 import { services } from '../../services';
 
 export const handleRegister = (user) => async (dispatch) => {
-  dispatch(resetErrors());
+  dispatch(resetError());
   dispatch(startAPICall());
 
   try {
@@ -10,7 +10,7 @@ export const handleRegister = (user) => async (dispatch) => {
 
     return { username, phoneNumber };
   } catch (err) {
-    dispatch(handleError({ value: 'validation', message: err.message }));
+    dispatch(handleError(err));
   } finally {
     dispatch(endAPICall());
   }

@@ -13,6 +13,6 @@ export const login = async (user) => {
 
     return data;
   } catch (err) {
-    return err;
+    throw new Error('login error');
   }
 };

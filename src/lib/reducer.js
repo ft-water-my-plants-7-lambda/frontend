@@ -9,13 +9,7 @@ const initialState = {
   },
   plants: [],
   isLoading: false,
-  errors: {
-    validation: '',
-    create: '',
-    read: '',
-    update: '',
-    delete: '',
-  },
+  error: '',
 };
 
 export const reducer = (state = initialState, action) => {
@@ -30,29 +24,6 @@ export const reducer = (state = initialState, action) => {
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
-      };
-
-    case ACTIONS.RESET_ERRORS:
-      return {
-        ...state,
-        errors: {
-          validation: '',
-          create: '',
-          update: '',
-          delete: '',
-        },
-      };
-
-    case ACTIONS.START_API_CALL:
-      return {
-        ...state,
-        isLoading: true,
-      };
-
-    case ACTIONS.END_API_CALL:
-      return {
-        ...state,
-        isLoading: false,
       };
 
     case ACTIONS.LOGIN_SUCCESS:
@@ -84,7 +55,6 @@ export const reducer = (state = initialState, action) => {
         ...state,
         user: {
           ...state.user,
-          user_id: action.payload.user_id,
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
@@ -117,15 +87,28 @@ export const reducer = (state = initialState, action) => {
         plants: state.plants.filter((plant) => plant.plant_id !== action.payload),
       };
 
-    case ACTIONS.HANDLE_ERROR:
-      const { value, message } = action.payload;
-
+    case ACTIONS.START_API_CALL:
       return {
         ...state,
-        errors: {
-          ...state.errors,
-          [value]: message,
-        },
+        isLoading: true,
+      };
+
+    case ACTIONS.END_API_CALL:
+      return {
+        ...state,
+        isLoading: false,
+      };
+
+    case ACTIONS.HANDLE_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case ACTIONS.RESET_ERROR:
+      return {
+        ...state,
+        error: '',
       };
 
     default:

@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from 'react';
 
+import { connect } from 'react-redux';
+import { handleUpdateUser } from '../lib/actions/handleUpdateUser';
+
 import { H2, Form, Label, Input, Button } from './FormStyledComponents';
 
-const UserProfileForm = () => {
+const UserProfileForm = ({ user: userData, handleUpdateUser }) => {
   const [user, setUser] = useState({
     username: '',
     password: '',
     phoneNumber: '',
   });
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (userData) {
+      setUser({
+        username: userData.username,
+        password: '',
+        phoneNumber: userData.phoneNumber,
+      });
+    }
+  }, [userData]);
 
   const handleChange = (e) => {
     setUser({
@@ -20,9 +31,8 @@ const UserProfileForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleUpdateUser(userData.user_id, user);
   };
-
-  const { username, password, phoneNumber } = user;
 
   return (
     <>
@@ -31,10 +41,10 @@ const UserProfileForm = () => {
         <Label>
           Username:
           <Input
-            name='username'
-            type='text'
-            value={username}
-            placeholder='Username'
+            name="username"
+            type="text"
+            placeholder="Username"
+            value={user.username}
             onChange={handleChange}
             disabled
           />
@@ -42,27 +52,29 @@ const UserProfileForm = () => {
         <Label>
           Change Password:
           <Input
-            name='password'
-            type='password'
-            value={password}
-            placeholder='Enter a new password'
+            name="password"
+            type="password"
+            placeholder="Enter a new password"
+            value={user.password}
             onChange={handleChange}
           />
         </Label>
         <Label>
           Change Phone Number:
           <Input
-            name='phoneNumber'
-            type='tel'
-            value={phoneNumber}
-            placeholder='Enter a new phone number'
+            name="phoneNumber"
+            type="tel"
+            placeholder="Enter a new phone number"
+            value={user.phoneNumber}
             onChange={handleChange}
           />
         </Label>
-        <Button>Save</Button>
+        <Button>Update</Button>
       </Form>
     </>
   );
 };
 
-export default UserProfileForm;
+const mapStateToProps = (state) => ({ user: state.user });
+
+export default connect(mapStateToProps, { handleUpdateUser })(UserProfileForm);

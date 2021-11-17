@@ -1,9 +1,9 @@
-import { resetErrors, init } from '.';
+import { resetError, init } from '.';
 
-export const handleInit = (user) => async (dispatch) => {
+export const handleInit = () => async (dispatch) => {
   if (!localStorage.getItem('token')) return;
 
-  resetErrors();
+  resetError();
 
   const username = localStorage.getItem('username');
   const phoneNumber = localStorage.getItem('phoneNumber');
