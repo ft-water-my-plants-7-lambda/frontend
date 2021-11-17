@@ -31,6 +31,25 @@ export const Input = styled.input`
   padding: 2% 2%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.8);
+
+  ${(props) =>
+    props.login &&
+    `
+  margin: 1% 0;
+  // padding: 2% 2%;
+  width:100%;
+  // height:100%;
+  border: none;
+  outline: none;
+     
+  `}
+`;
+
+export const Div = styled.div`
+  margin: 3% 0;
+  height: 1.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
 `;
 
 export const Button = styled.button`
