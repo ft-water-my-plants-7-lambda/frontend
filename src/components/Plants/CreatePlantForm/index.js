@@ -54,7 +54,7 @@ const CreatePlantForm = ({ handleCreatePlant }) => {
     showWidget(widget);
   };
 
-  const { nickname, species, h20frequency, image } = plant;
+  const { nickname, species, h20frequency } = plant;
 
   return (
     <>
