@@ -9,8 +9,6 @@ export const handleUpdateUser = (user) => async (dispatch) => {
     const updatedUser = await services.updateUser(user);
 
     dispatch(updateUser(user));
-
-    return updatedUser;
   } catch (err) {
     dispatch(handleError({ value: 'update', message: err.message }));
   } finally {
