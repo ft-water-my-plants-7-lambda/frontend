@@ -5,6 +5,6 @@ export const createPlant = async (plant) => {
     const { data } = await axiosWithAuth().post('/plants', plant);
     return data;
   } catch (err) {
-    throw new Error(err);
+    throw new Error('create plant error');
   }
 };

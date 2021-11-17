@@ -5,6 +5,6 @@ export const getAllPlants = async () => {
     const { data } = await axiosWithAuth().get('/plants');
     return data;
   } catch (err) {
-    return err;
+    throw new Error('get all plants error');
   }
 };

@@ -5,6 +5,6 @@ export const getPlantById = async (plantId) => {
     const { data } = await axiosWithAuth().get(`/plants/${plantId}`);
     return data;
   } catch (err) {
-    return err;
+    throw new Error('get plant by id error');
   }
 };

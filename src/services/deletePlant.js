@@ -5,6 +5,6 @@ export const deletePlant = async (plantId) => {
     const { data } = await axiosWithAuth().delete(`/plants/${plantId}`);
     return data;
   } catch (err) {
-    return err;
+    throw new Error('delete plant error');
   }
 };
