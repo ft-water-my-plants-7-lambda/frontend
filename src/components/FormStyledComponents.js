@@ -54,7 +54,7 @@ export const Button = styled.button`
 
   :disabled {
     color: rgba(230, 230, 230, 1);
-    background-color: rgba(44, 163, 113, 1);
+    background-color: #a6a6a6;
     border: 2px solid white;
   }
 `;
