@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import { handleCreatePlant } from '../../../lib/actions/handleCreatePlant';
+
 import { H2, Form, Label, Input, Button } from '../../FormStyledComponents';
 
-import axiosWithAuth from '../../../utils/axiosWithAuth';
-
-const AddPlants = (props) => {
+const CreatePlantForm = ({ handleCreatePlant }) => {
   const { push } = useHistory();
 
   const [plant, setPlant] = useState({
@@ -23,13 +25,8 @@ const AddPlants = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .post(`/plants`, plant)
-      .then((res) => {
-        props.setPlants(res.data);
-        push(`/plants`);
-      })
-      .catch((err) => console.log(err));
+    handleCreatePlant(plant);
+    push('/plants');
   };
 
   const showWidget = (widget) => {
@@ -66,30 +63,15 @@ const AddPlants = (props) => {
         <H2>Add Plants</H2>
         <Label>
           Plant Name:
-          <Input
-            name='nickname'
-            type='text'
-            value={nickname}
-            onChange={handleChange}
-          />
+          <Input name="nickname" type="text" value={nickname} onChange={handleChange} />
         </Label>
         <Label>
           Plant Species:
-          <Input
-            name='species'
-            type='text'
-            value={species}
-            onChange={handleChange}
-          />
+          <Input name="species" type="text" value={species} onChange={handleChange} />
         </Label>
         <Label>
           H20 Frequency:
-          <Input
-            name='h20frequency'
-            type='text'
-            value={h20frequency}
-            onChange={handleChange}
-          />
+          <Input name="h20frequency" type="text" value={h20frequency} onChange={handleChange} />
         </Label>
         <Label>
           Photo:
@@ -101,4 +83,4 @@ const AddPlants = (props) => {
   );
 };
 
-export default AddPlants;
+export default connect(null, { handleCreatePlant })(CreatePlantForm);

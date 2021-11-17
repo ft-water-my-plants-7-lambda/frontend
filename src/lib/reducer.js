@@ -1,10 +1,11 @@
-import { ACTIONS } from './actions'
+import { ACTIONS } from './actions';
 
 const initialState = {
   user: {
     isAuthenticated: false,
-    username: '',
-    phoneNumber: '',
+    user_id: null,
+    username: null,
+    phoneNumber: null,
   },
   plants: [],
   isLoading: false,
@@ -15,7 +16,7 @@ const initialState = {
     update: '',
     delete: '',
   },
-}
+};
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -25,10 +26,11 @@ export const reducer = (state = initialState, action) => {
         user: {
           ...state.user,
           isAuthenticated: true,
+          user_id: action.payload.user_id,
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
-      }
+      };
 
     case ACTIONS.RESET_ERRORS:
       return {
@@ -39,19 +41,19 @@ export const reducer = (state = initialState, action) => {
           update: '',
           delete: '',
         },
-      }
+      };
 
     case ACTIONS.START_API_CALL:
       return {
         ...state,
         isLoading: true,
-      }
+      };
 
     case ACTIONS.END_API_CALL:
       return {
         ...state,
         isLoading: false,
-      }
+      };
 
     case ACTIONS.LOGIN_SUCCESS:
       return {
@@ -59,10 +61,11 @@ export const reducer = (state = initialState, action) => {
         user: {
           ...state.user,
           isAuthenticated: true,
+          user_id: action.payload.user_id,
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
-      }
+      };
 
     case ACTIONS.LOGOUT_SUCCESS:
       return {
@@ -70,47 +73,62 @@ export const reducer = (state = initialState, action) => {
         user: {
           ...state.user,
           isAuthenticated: false,
-          username: '',
-          phoneNumber: '',
+          user_id: null,
+          username: null,
+          phoneNumber: null,
         },
-      }
+      };
 
     case ACTIONS.UPDATE_USER:
       return {
         ...state,
         user: {
           ...state.user,
+          user_id: action.payload.user_id,
           username: action.payload.username,
           phoneNumber: action.payload.phoneNumber,
         },
-      }
+      };
 
-    case ACTIONS.UPDATE_PLANTS:
+    case ACTIONS.SET_PLANTS:
+      return {
+        ...state,
+        plants: action.payload,
+      };
+
+    case ACTIONS.ADD_PLANT:
       return {
         ...state,
         plants: [...state.plants, action.payload],
-      }
+      };
 
-    case ACTIONS.DELETE_PLANT:
-      const plants = state.plants.filter((plant) => plant.id !== action.payload)
-
+    case ACTIONS.EDIT_PLANT:
+      const plantData = action.payload;
       return {
         ...state,
-        plants: plants,
-      }
+        plants: state.plants.map((plant) =>
+          plant.plant_id === plantData.plant_id ? plantData : plant
+        ),
+      };
+
+    case ACTIONS.DELETE_PLANT:
+      return {
+        ...state,
+        plants: state.plants.filter((plant) => plant.plant_id !== action.payload),
+      };
 
     case ACTIONS.HANDLE_ERROR:
-      const [error, message] = action.payload
+      const { value, message } = action.payload;
 
       return {
         ...state,
         errors: {
           ...state.errors,
-          [error]: message,
+          [value]: message,
         },
-      }
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};

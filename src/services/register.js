@@ -1,13 +1,11 @@
-import axios from 'axios'
+import axios from 'axios';
 
-import { API_URL } from '../config'
+import { API_URL } from '../config';
 
 export const register = async (user) => {
   try {
-    const { data } = await axios.post(`${API_URL}/users/signup`, user)
-
-    return data
+    await axios.post(`${API_URL}/users/register`, user);
   } catch (err) {
-    return err
+    return err;
   }
-}
+};

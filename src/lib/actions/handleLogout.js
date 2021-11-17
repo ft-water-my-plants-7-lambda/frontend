@@ -1,19 +1,16 @@
-import { resetErrors, startAPICall, logoutSuccess, handleError, endAPICall } from '.'
-import { services } from '../../services'
+import { resetErrors, startAPICall, logoutSuccess, handleError, endAPICall } from '.';
+import { services } from '../../services';
 
-export const handleLogout = (user) => async (dispatch) => {
-  dispatch(resetErrors())
-  dispatch(startAPICall())
+export const handleLogout = () => async (dispatch) => {
+  dispatch(resetErrors());
+  dispatch(startAPICall());
 
   try {
-    const { username, phoneNumber } = await services.logout(user)
-
-    dispatch(logoutSuccess())
-
-    return { username, phoneNumber }
+    await services.logout();
+    dispatch(logoutSuccess());
   } catch (err) {
-    dispatch(handleError({ error: 'validation', message: err.message }))
+    dispatch(handleError({ value: 'validation', message: err.message }));
   } finally {
-    dispatch(endAPICall())
+    dispatch(endAPICall());
   }
-}
+};

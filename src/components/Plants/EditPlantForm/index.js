@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import { handleEditPlant } from '../../../lib/actions/handleEditPlant';
+import { handleGetPlantById } from '../../../lib/actions/handleGetPlantById';
+
 import { H2, Form, Label, Input, Button } from '../../FormStyledComponents';
 
-import axiosWithAuth from '../../../utils/axiosWithAuth';
-
-const AddPlants = (props) => {
+const EditPlantForm = ({ handleGetPlantById, handleEditPlant }) => {
   const { push } = useHistory();
   const { id } = useParams();
 
@@ -16,15 +19,8 @@ const AddPlants = (props) => {
   });
 
   useEffect(() => {
-    axiosWithAuth()
-      .get(`/plants/${id}`)
-      .then((res) => {
-        setPlant(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [id]);
+    if (id) handleGetPlantById(id, (plantData) => setPlant(plantData));
+  }, []);
 
   const handleChange = (e) => {
     setPlant({
@@ -35,13 +31,8 @@ const AddPlants = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .put(`/plants/${id}`, plant)
-      .then((res) => {
-        props.setPlants(res.data);
-        push(`/plants/${id}`);
-      })
-      .catch((err) => console.log(err));
+    handleEditPlant(plant);
+    push(`/plants/${id}`);
   };
 
   const showWidget = (widget) => {
@@ -78,39 +69,26 @@ const AddPlants = (props) => {
         <H2>Edit Plants</H2>
         <Label>
           Plant Name:
-          <Input
-            name='nickname'
-            type='text'
-            value={nickname}
-            onChange={handleChange}
-          />
+          <Input name="nickname" type="text" value={nickname} onChange={handleChange} />
         </Label>
         <Label>
           Plant Species:
-          <Input
-            name='species'
-            type='text'
-            value={species}
-            onChange={handleChange}
-          />
+          <Input name="species" type="text" value={species} onChange={handleChange} />
         </Label>
         <Label>
           H20 Frequency:
-          <Input
-            name='h20frequency'
-            type='text'
-            value={h20frequency}
-            onChange={handleChange}
-          />
+          <Input name="h20frequency" type="text" value={h20frequency} onChange={handleChange} />
         </Label>
         <Label>
           Photo:
-          <Button onClick={handleClick}>Edit Photo</Button>
+          <Button type="button" onClick={handleClick}>
+            Edit Photo
+          </Button>
         </Label>
-        <Button>Edit Plant</Button>
+        <Button>Submit</Button>
       </Form>
     </>
   );
 };
 
-export default AddPlants;
+export default connect(null, { handleGetPlantById, handleEditPlant })(EditPlantForm);

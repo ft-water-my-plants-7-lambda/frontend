@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   WelcomeMessage,
   PlantAmount,
@@ -6,6 +5,8 @@ import {
   PlantListContainer,
 } from './DashboardElements';
 import PlantListItem from './PlantListItem';
+
+import { connect } from 'react-redux';
 
 const PlantList = ({ plants }) => {
   return (
@@ -16,7 +17,7 @@ const PlantList = ({ plants }) => {
         <PlantListWrapper>
           <PlantListContainer>
             {plants.map((plant) => (
-              <PlantListItem key={plant.plant_id} plant={plant} />
+              <PlantListItem key={plant.plant_id} {...plant} />
             ))}
           </PlantListContainer>
         </PlantListWrapper>
@@ -25,4 +26,6 @@ const PlantList = ({ plants }) => {
   );
 };
 
-export default PlantList;
+const mapStateToProps = (state) => ({ plants: state.plants });
+
+export default connect(mapStateToProps)(PlantList);

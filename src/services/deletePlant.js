@@ -1,3 +1,10 @@
-import axiosWithAuth from '../utils/axiosWithAuth'
+import axiosWithAuth from '../utils/axiosWithAuth';
 
-export const deletePlant = (plantId) => null
+export const deletePlant = async (plantId) => {
+  try {
+    const { data } = await axiosWithAuth().delete(`/plants/${plantId}`);
+    return data;
+  } catch (err) {
+    return err;
+  }
+};

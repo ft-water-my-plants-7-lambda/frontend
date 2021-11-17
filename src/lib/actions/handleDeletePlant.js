@@ -1,19 +1,16 @@
-import { resetErrors, startAPICall, deletePlant, handleError, endAPICall } from '.'
-import { services } from '../../services'
+import { resetErrors, startAPICall, deletePlant, handleError, endAPICall } from '.';
+import { services } from '../../services';
 
 export const handleDeletePlant = (plantId) => async (dispatch) => {
-  dispatch(resetErrors())
-  dispatch(startAPICall())
+  dispatch(resetErrors());
+  dispatch(startAPICall());
 
   try {
-    const deletedPlant = await services.deletePlant(plantId)
-
-    dispatch(deletePlant(plantId))
-
-    return deletedPlant
+    const { deletedPlant } = await services.deletePlant(plantId);
+    dispatch(deletePlant(deletedPlant.plant_id));
   } catch (err) {
-    dispatch(handleError({ error: 'delete', message: err.message }))
+    dispatch(handleError({ value: 'delete', message: err.message }));
   } finally {
-    dispatch(endAPICall())
+    dispatch(endAPICall());
   }
-}
+};

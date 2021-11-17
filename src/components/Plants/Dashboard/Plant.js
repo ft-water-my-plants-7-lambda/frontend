@@ -13,43 +13,31 @@ import {
   Button,
 } from './DashboardElements';
 
-import axiosWithAuth from '../../../utils/axiosWithAuth';
+import { connect } from 'react-redux';
+import { handleGetPlantById } from '../../../lib/actions/handleGetPlantById';
+import { handleDeletePlant } from '../../../lib/actions/handleDeletePlant';
 
 import DeleteMovieModal from './DeletePlantModal';
 
-const Plant = (props) => {
-  const [plant, setPlant] = useState('');
+const Plant = ({ handleGetPlantById, handleDeletePlant }) => {
+  const [plant, setPlant] = useState([]);
   const [deleteModal, setDeleteModal] = useState(false);
 
   const { id } = useParams();
   const { push } = useHistory();
 
   useEffect(() => {
-    axiosWithAuth()
-      .get(`/plants/${id}`)
-      .then((res) => {
-        setPlant(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+    if (id) handleGetPlantById(id, (plantData) => setPlant(plantData));
+  }, [id, handleGetPlantById]);
 
   const handleModal = () => {
     setDeleteModal(!deleteModal);
   };
 
   const handleDelete = () => {
-    axiosWithAuth()
-      .delete(`/plants/${id}`)
-      .then((res) => {
-        props.setPlants(res.data);
-        setDeleteModal(false);
-        push('/plants');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    handleDeletePlant(id);
+    setDeleteModal(false);
+    push('/plants');
   };
 
   const cancelDelete = () => {
@@ -79,14 +67,9 @@ const Plant = (props) => {
           </Buttons>
         </PlantInfo>
       </DetailContainer>
-      {deleteModal && (
-        <DeleteMovieModal
-          handleDelete={handleDelete}
-          cancelDelete={cancelDelete}
-        />
-      )}
+      {deleteModal && <DeleteMovieModal handleDelete={handleDelete} cancelDelete={cancelDelete} />}
     </>
   );
 };
 
-export default Plant;
+export default connect(null, { handleGetPlantById, handleDeletePlant })(Plant);
