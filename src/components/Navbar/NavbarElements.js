@@ -17,6 +17,7 @@ export const Nav = styled.nav`
 export const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 80px;
   z-index: 1;
   width: 100%;
@@ -35,21 +36,41 @@ export const NavLogo = styled(Link)`
   margin-left: 24px;
   font-weight: bold;
   text-decoration: none;
+  display: none;
+
+  @media (min-width: 769px) {
+    font-size: 1.5rem;
+  }
+  @media (min-width: 1025px) {
+    display: inline-block;
+  }
 `;
 
-export const MobileLogo = styled.div`
+export const MobileHamburgerMenu = styled.div`
   display: none;
   @media (max-width: 769px) {
     display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 60%);
     font-size: 1.8rem;
     cursor: pointer;
     color: #fff;
     z-index: 20;
   }
+`;
+
+export const MobileLogo = styled(Link)`
+  position: relative;
+  width: 4em;
+  flex-shrink: 0;
+  cursor: pointer;
+  @media (min-width: 1025px) {
+    display: none;
+  }
+`;
+
+export const MobileLogoImage = styled.img`
+  width: 2em;
+  filter: invert(99%) sepia(100%) saturate(1%) hue-rotate(43deg)
+    brightness(102%) contrast(101%);
 `;
 
 export const NavMenu = styled.ul`
