@@ -43,7 +43,9 @@ const Plant = (props) => {
       });
   };
 
-  const handleEdit = () => {};
+  const handleEdit = () => {
+    push(`/plants/edit/${id}`);
+  };
 
   return (
     <DetailContainer>
@@ -58,7 +60,7 @@ const Plant = (props) => {
         <Label>Water Frequency:</Label>
         <WaterFreq>{plant.h20frequency}</WaterFreq>
         <Buttons>
-          <Button>Edit</Button>
+          <Button onClick={handleEdit}>Edit</Button>
           <Button onClick={handleDelete}>Delete</Button>
         </Buttons>
       </PlantInfo>
