@@ -14,8 +14,11 @@ import {
   Button,
 } from './DashboardElements';
 
+import DeleteMovieModal from './DeletePlantModal';
+
 const Plant = (props) => {
   const [plant, setPlant] = useState('');
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const { id } = useParams();
   const { push } = useHistory();
@@ -24,9 +27,18 @@ const Plant = (props) => {
     // handleGetPlant(id)
   });
 
+  const handleModal = () => {
+    setDeleteModal(!deleteModal);
+  };
+
   const handleDelete = () => {
-    // handleDeletePlant(id)
-    // push('.plants')
+    // handleDeletePlant
+    setDeleteModal(false);
+    push('/plants');
+  };
+
+  const cancelDelete = () => {
+    setDeleteModal(false);
   };
 
   const handleEdit = () => {
@@ -34,23 +46,26 @@ const Plant = (props) => {
   };
 
   return (
-    <DetailContainer>
-      <ImageContainer>
-        <Image src={plant.image} alt={plant.name} />
-      </ImageContainer>
-      <PlantInfo>
-        <Label>Name:</Label>
-        <Name>{plant.nickname}</Name>
-        <Label>Species:</Label>
-        <Species>{plant.species}</Species>
-        <Label>Water Frequency:</Label>
-        <WaterFreq>{plant.h20frequency}</WaterFreq>
-        <Buttons>
-          <Button onClick={handleEdit}>Edit</Button>
-          <Button onClick={handleDelete}>Delete</Button>
-        </Buttons>
-      </PlantInfo>
-    </DetailContainer>
+    <>
+      <DetailContainer>
+        <ImageContainer>
+          <Image src={plant.image} alt={plant.name} />
+        </ImageContainer>
+        <PlantInfo>
+          <Label>Name:</Label>
+          <Name>{plant.nickname}</Name>
+          <Label>Species:</Label>
+          <Species>{plant.species}</Species>
+          <Label>Water Frequency:</Label>
+          <WaterFreq>{plant.h20frequency}</WaterFreq>
+          <Buttons>
+            <Button onClick={handleEdit}>Edit</Button>
+            <Button onClick={handleModal}>Delete</Button>
+          </Buttons>
+        </PlantInfo>
+      </DetailContainer>
+      {deleteModal && <DeleteMovieModal handleDelete={handleDelete} cancelDelete={cancelDelete} />}
+    </>
   );
 };
 
