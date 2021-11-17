@@ -74,7 +74,7 @@ const AddPlants = (props) => {
     <>
       {/* <h1>Add Plants Form goes here</h1> */}
       <Form onSubmit={handleSubmit}>
-        <H2>Add Plants</H2>
+        <H2>Edit Plants</H2>
         <Label>
           Plant Name:
           <Input
