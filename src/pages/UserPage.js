@@ -1,11 +1,12 @@
-import Page from '../components/Page'
+import Page from '../components/Page';
+import UserProfile from '../components/UserProfileForm';
 
 const UserPage = () => {
   return (
     <Page>
-      <h2>User Page goes here</h2>
+      <UserProfile />
     </Page>
-  )
-}
+  );
+};
 
-export default UserPage
+export default UserPage;
