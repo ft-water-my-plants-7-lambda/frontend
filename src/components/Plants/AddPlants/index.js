@@ -56,7 +56,7 @@ const AddPlants = (props) => {
     showWidget(widget);
   };
 
-  const { nickname, species, h20frequency } = plant;
+  const { nickname, species, h20frequency, image } = plant;
 
   return (
     <>

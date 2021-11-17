@@ -24,31 +24,48 @@ export const Label = styled.label`
   flex-direction: column;
   margin: 3% 0;
   text-align: start;
-
-  ${(props) =>
-    props.button &&
-    `
-    flex-direction: row;    
-    align-items:center;
-    
-  `}
 `;
 
 export const Input = styled.input`
   margin: 3% 0;
+  padding: 2% 2%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.8);
 `;
 
 export const Button = styled.button`
-  padding: 1%;
-  width: 5rem;
-  height: 2rem;
-  font-size: 0.75rem;
+  padding: 4% 0;
+  margin: 4% 0;
+  width: 100%;
   align-self: center;
-  border: 1px solid black;
-  background-color: white;
+  border: 2px solid white;
+  border-radius: 5rem;
+  background-color: #01bf71;
+  color: white;
+  font-size: 1.1rem;
+
+  :hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    transition: ease-in 0.2s;
+  }
+
+  :disabled {
+    color: rgba(230, 230, 230, 1);
+    background-color: rgba(44, 163, 113, 1);
+    border: 2px solid white;
+  }
 `;
 
 export const A = styled.a`
   font-size: 0.8rem;
-  margin-bottom: 6%;
+  margin-bottom: 4%;
+`;
+
+export const P = styled.p`
+  font-size: 0.7rem;
+  align-self: center;
+  color: red;
 `;
