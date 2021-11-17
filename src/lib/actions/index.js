@@ -8,6 +8,8 @@ export const ACTIONS = {
   UPDATE_USER: 'UPDATE_USER',
   SET_PLANTS: 'SET_PLANTS',
   ADD_PLANT: 'ADD_PLANT',
+  UPDATE_PLANT: 'UPDATE_PLANT',
+  DELETE_PLANT: 'DELETE_PLANT',
   HANDLE_ERROR: 'HANDLE_ERROR',
 };
 
@@ -25,7 +27,9 @@ export const updateUser = (user) => ({ type: ACTIONS.UPDATE_USER, payload: user 
 //  sets state.plants to plants[]
 export const setPlants = (plants) => ({ type: ACTIONS.SET_PLANTS, payload: plants });
 //  appends plant to state.plants
-export const addPlants = (plant) => ({ type: ACTIONS.ADD_PLANTS, payload: plant });
+export const addPlant = (plant) => ({ type: ACTIONS.ADD_PLANT, payload: plant });
+export const updatePlant = (plant) => ({ type: ACTIONS.UPDATE_PLANT, payload: plant });
+export const detelePlant = (plantId) => ({ type: ACTIONS.ADD_PLANTS, payload: plantId });
 
 // pass an object i.e. { value: 'update', message: '404' }
 // value should have value of 'validation', 'create', 'update', or 'delete'

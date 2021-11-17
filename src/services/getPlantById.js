@@ -1,8 +1,8 @@
 import axiosWithAuth from '../utils/axiosWithAuth';
 
-export const createPlant = async (plant) => {
+export const getPlantById = async (plantId) => {
   try {
-    const { data } = await axiosWithAuth().post('/plants', plant);
+    const { data } = await axiosWithAuth().get(`/plants/${plantId}`);
     return data;
   } catch (err) {
     return err;

@@ -102,6 +102,19 @@ export const reducer = (state = initialState, action) => {
         plants: [...state.plants, action.payload],
       };
 
+    case ACTIONS.UPDATE_PLANT:
+      const { plant: plantData } = action.payload;
+      return {
+        ...state,
+        plants: state.plants.map((plant) => (plant.id === plantData.plant_id ? plantData : plant)),
+      };
+
+    case ACTIONS.DELETE_PLANT:
+      return {
+        ...state,
+        plants: state.plants.filter((plant) => plant.plant_id !== action.payload),
+      };
+
     case ACTIONS.HANDLE_ERROR:
       const [error, message] = action.payload;
 

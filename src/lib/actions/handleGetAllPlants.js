@@ -6,9 +6,8 @@ export const handleGetAllPlants = () => async (dispatch) => {
   dispatch(startAPICall());
 
   try {
-    const { data: plants } = await services.getPlants();
-
-    dispatch(setPlants(plants));
+    const { data } = await services.getAllPlants();
+    dispatch(setPlants(data));
   } catch (err) {
     dispatch(handleError({ value: 'get', message: err.message }));
   } finally {
