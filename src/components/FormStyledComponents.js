@@ -1,5 +1,5 @@
 // FormStyledComponents.js
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const H2 = styled.h2`
   font-size: 1.5rem;
@@ -14,9 +14,14 @@ export const Form = styled.form`
   box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  margin: 4% 35%;
+  width: 70%;
+  margin: 2% auto;
   padding: 5% 5%;
   text-align: center;
+
+  @media (min-width: 1050px) {
+    width: 20vw;
+  }
 `;
 
 export const Label = styled.label`
