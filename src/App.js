@@ -10,6 +10,7 @@ import { handleInit } from './lib/actions/handleInit';
 // pages
 
 // auth
+import axiosWithAuth from './utils/axiosWithAuth';
 
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
@@ -22,23 +23,22 @@ import PlantsPage from './pages/PlantsPage';
 import PlantPage from './pages/PlantPage';
 import EditPlantPage from './pages/EditPlantPage';
 import AddPlantPage from './pages/AddPlantPage';
-import axios from 'axios';
 
-const App = ({ handleInit }) => {
+const App = ({ handleInit, isAuthenticated }) => {
   useEffect(() => handleInit(), [handleInit]);
 
   const [plants, setPlants] = useState([]);
 
   useEffect(() => {
-    if (!plants.length) {
-      axios
-        .get('https://water-my-plants-7-ft.herokuapp.com/api/plants')
+    if (!plants.length && isAuthenticated) {
+      axiosWithAuth()
+        .get('/plants')
         .then((res) => {
           setPlants(res.data);
         })
         .catch((err) => console.log(err));
     }
-  }, [plants]);
+  }, [plants, isAuthenticated]);
 
   return (
     <>
@@ -68,4 +68,10 @@ const App = ({ handleInit }) => {
   );
 };
 
-export default connect(null, { handleInit })(App);
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.user.isAuthenticated,
+  };
+};
+
+export default connect(mapStateToProps, { handleInit })(App);

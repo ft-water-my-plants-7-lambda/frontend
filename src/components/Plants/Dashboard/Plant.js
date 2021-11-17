@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import {
@@ -14,6 +13,8 @@ import {
   Button,
 } from './DashboardElements';
 
+import axiosWithAuth from '../../../utils/axiosWithAuth';
+
 import DeleteMovieModal from './DeletePlantModal';
 
 const Plant = (props) => {
@@ -24,8 +25,8 @@ const Plant = (props) => {
   const { push } = useHistory();
 
   useEffect(() => {
-    axios
-      .get(`https://water-my-plants-7-ft.herokuapp.com/api/plants/${id}`)
+    axiosWithAuth()
+      .get(`/plants/${id}`)
       .then((res) => {
         setPlant(res.data);
       })
@@ -39,8 +40,8 @@ const Plant = (props) => {
   };
 
   const handleDelete = () => {
-    axios
-      .delete(`https://water-my-plants-7-ft.herokuapp.com/api/plants/${id}`)
+    axiosWithAuth()
+      .delete(`/plants/${id}`)
       .then((res) => {
         props.setPlants(res.data);
         setDeleteModal(false);

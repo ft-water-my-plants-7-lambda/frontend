@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 import { H2, Form, Label, Input, Button } from '../../FormStyledComponents';
+
+import axiosWithAuth from '../../../utils/axiosWithAuth';
 
 const AddPlants = (props) => {
   const { push } = useHistory();
@@ -22,8 +23,8 @@ const AddPlants = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post(`https://water-my-plants-7-ft.herokuapp.com/api/plants`, plant)
+    axiosWithAuth()
+      .post(`/plants`, plant)
       .then((res) => {
         props.setPlants(res.data);
         push(`/plants`);
@@ -56,7 +57,7 @@ const AddPlants = (props) => {
     showWidget(widget);
   };
 
-  const { nickname, species, h20frequency, image } = plant;
+  const { nickname, species, h20frequency } = plant;
 
   return (
     <>
