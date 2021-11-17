@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
-import { H2, Form, Label, Input, Button } from "../../FormStyledComponents";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import { H2, Form, Label, Input, Button } from '../../FormStyledComponents';
 
 const AddPlants = (props) => {
   const { push } = useHistory();
 
   const [plant, setPlant] = useState({
-    nickname: "",
-    species: "",
-    h20frequency: "",
-    image: "",
+    nickname: '',
+    species: '',
+    h20frequency: '',
+    image: '',
   });
 
   const handleChange = (e) => {
@@ -31,6 +31,31 @@ const AddPlants = (props) => {
       .catch((err) => console.log(err));
   };
 
+  const showWidget = (widget) => {
+    widget.open();
+  };
+
+  let widget = window.cloudinary.createUploadWidget(
+    {
+      cloudName: 'dnaaop75s',
+      uploadPreset: 'soj1jqqs',
+      autoUpload: false,
+    },
+    (error, result) => {
+      if (!error && result && result.event === 'success') {
+        setPlant({
+          ...plant,
+          image: result.info.secure_url,
+        });
+      }
+    }
+  );
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    showWidget(widget);
+  };
+
   const { nickname, species, h20frequency, image } = plant;
 
   return (
@@ -41,8 +66,8 @@ const AddPlants = (props) => {
         <Label>
           Plant Name:
           <Input
-            name="nickname"
-            type="text"
+            name='nickname'
+            type='text'
             value={nickname}
             onChange={handleChange}
           />
@@ -50,8 +75,8 @@ const AddPlants = (props) => {
         <Label>
           Plant Species:
           <Input
-            name="species"
-            type="text"
+            name='species'
+            type='text'
             value={species}
             onChange={handleChange}
           />
@@ -59,20 +84,15 @@ const AddPlants = (props) => {
         <Label>
           H20 Frequency:
           <Input
-            name="h20frequency"
-            type="text"
+            name='h20frequency'
+            type='text'
             value={h20frequency}
             onChange={handleChange}
           />
         </Label>
         <Label>
           Photo:
-          <Input
-            name="image"
-            type="text"
-            value={image}
-            onChange={handleChange}
-          />
+          <Button onClick={handleClick}>Add Photo</Button>
         </Label>
         <Button>Add Plant</Button>
       </Form>
