@@ -86,7 +86,9 @@ export const DetailContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  margin: 2% auto;
+  margin-top: 2%;
+  margin-right: auto;
+  margin-left: auto;
   overflow: hidden;
   width: 95%;
   background: #fff;
@@ -179,6 +181,49 @@ export const ButtonLink = styled(Link)`
   margin-right: 2px;
   border-radius: 2px;
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #f5f5f5;
+  cursor: pointer;
+`;
+
+// MODAL STYLING
+
+export const ModalContainer = styled.div`
+  margin: 0 auto;
+  width: 95%;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  @media (min-width: 1150px) {
+    width: 50%;
+  }
+`;
+
+export const ModalContent = styled.div`
+  font-size: 1.5rem;
+  padding: 2em;
+`;
+
+export const ModalWarningText = styled.p`
+  margin-bottom: 1%;
+  font-weight: bold;
+`;
+
+export const SmallText = styled.p`
+  font-size: 0.875rem;
+  margin-bottom: 1%;
+  font-style: italic;
+`;
+
+export const DeleteButton = styled.button`
+  background: #ff5c58;
+  padding: 0.875em;
+  display: inline-block;
+  outline: none;
+  border: 0;
+  margin-right: 2px;
+  border-radius: 2px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #f5f5f5;
