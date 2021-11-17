@@ -1,9 +1,10 @@
 import axiosWithAuth from '../utils/axiosWithAuth';
 
-export const editPlant = (plant) => {
+export const editPlant = async (plant) => {
   try {
-    const { data } = axiosWithAuth().put(`/plants/${plant.id}`, plant);
-    return data;
+    const res = await axiosWithAuth().put(`/plants/${plant.plant_id}`, plant);
+    console.log(res);
+    return res;
   } catch (err) {
     return err;
   }

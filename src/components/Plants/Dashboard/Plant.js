@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import {
@@ -14,25 +13,29 @@ import {
   Button,
 } from './DashboardElements';
 
+import { connect } from 'react-redux';
+import { handleGetPlantById } from '../../../lib/actions/handleGetPlantById';
+import { handleDeletePlant } from '../../../lib/actions/handleDeletePlant';
+
 import DeleteMovieModal from './DeletePlantModal';
 
-const Plant = (props) => {
-  const [plant, setPlant] = useState('');
+const Plant = ({ handleGetPlantById, handleDeletePlant }) => {
+  const [plant, setPlant] = useState([]);
   const [deleteModal, setDeleteModal] = useState(false);
 
   const { id } = useParams();
   const { push } = useHistory();
 
   useEffect(() => {
-    // handleGetPlant(id)
-  });
+    if (id) handleGetPlantById(id, (plantData) => setPlant(plantData));
+  }, [id, handleGetPlantById]);
 
   const handleModal = () => {
     setDeleteModal(!deleteModal);
   };
 
   const handleDelete = () => {
-    // handleDeletePlant
+    handleDeletePlant(id);
     setDeleteModal(false);
     push('/plants');
   };
@@ -69,4 +72,4 @@ const Plant = (props) => {
   );
 };
 
-export default Plant;
+export default connect(null, { handleGetPlantById, handleDeletePlant })(Plant);

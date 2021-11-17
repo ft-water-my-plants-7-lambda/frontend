@@ -1,10 +1,10 @@
 import Page from '../components/Page';
-import EditPlants from '../components/Plants/EditPlants';
+import EditPlantForm from '../components/Plants/EditPlantForm';
 
 const EditPlantPage = () => {
   return (
     <Page>
-      <EditPlants />
+      <EditPlantForm />
     </Page>
   );
 };

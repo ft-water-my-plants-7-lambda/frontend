@@ -1,10 +1,10 @@
 import Page from '../components/Page';
-import AddPlants from '../components/Plants/AddPlants';
+import CreatePlantForm from '../components/Plants/CreatePlantForm';
 
 const AddPlantPage = () => {
   return (
     <Page>
-      <AddPlants />
+      <CreatePlantForm />
     </Page>
   );
 };

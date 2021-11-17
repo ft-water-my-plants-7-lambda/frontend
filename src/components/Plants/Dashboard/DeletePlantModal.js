@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 
 import {
   ModalContainer,
@@ -11,11 +10,8 @@ import {
 } from './DashboardElements';
 
 const DeleteMovieModal = (props) => {
-  const { push } = useHistory();
-
   const handleDelete = () => {
     props.handleDelete();
-    push('/plants');
   };
 
   const handleCancel = () => {
@@ -27,9 +23,7 @@ const DeleteMovieModal = (props) => {
       <ModalContent>
         <form>
           <div>
-            <ModalWarningText>
-              Are you sure you want to delete this plant?
-            </ModalWarningText>
+            <ModalWarningText>Are you sure you want to delete this plant?</ModalWarningText>
             <SmallText>This action cannot be undone.</SmallText>
           </div>
           <div>

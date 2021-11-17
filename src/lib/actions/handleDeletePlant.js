@@ -6,8 +6,8 @@ export const handleDeletePlant = (plantId) => async (dispatch) => {
   dispatch(startAPICall());
 
   try {
-    await services.deletePlant(plantId);
-    dispatch(deletePlant(plantId));
+    const { deletedPlant } = await services.deletePlant(plantId);
+    dispatch(deletePlant(deletedPlant.plant_id));
   } catch (err) {
     dispatch(handleError({ value: 'delete', message: err.message }));
   } finally {

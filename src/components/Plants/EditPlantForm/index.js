@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import axios from 'axios';
+
+import { connect } from 'react-redux';
+import { handleEditPlant } from '../../../lib/actions/handleEditPlant';
+import { handleGetPlantById } from '../../../lib/actions/handleGetPlantById';
+
 import { H2, Form, Label, Input, Button } from '../../FormStyledComponents';
 
-const AddPlants = (props) => {
+const EditPlantForm = ({ handleGetPlantById, handleEditPlant }) => {
   const { push } = useHistory();
   const { id } = useParams();
 
@@ -15,8 +19,8 @@ const AddPlants = (props) => {
   });
 
   useEffect(() => {
-    // handleGetPlantById()
-  }, [id]);
+    if (id) handleGetPlantById(id, (plantData) => setPlant(plantData));
+  }, []);
 
   const handleChange = (e) => {
     setPlant({
@@ -27,7 +31,8 @@ const AddPlants = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // handleEditPlant
+    handleEditPlant(plant);
+    push(`/plants/${id}`);
   };
 
   const showWidget = (widget) => {
@@ -76,12 +81,14 @@ const AddPlants = (props) => {
         </Label>
         <Label>
           Photo:
-          <Button onClick={handleClick}>Edit Photo</Button>
+          <Button type="button" onClick={handleClick}>
+            Edit Photo
+          </Button>
         </Label>
-        <Button>Edit Plant</Button>
+        <Button>Submit</Button>
       </Form>
     </>
   );
 };
 
-export default AddPlants;
+export default connect(null, { handleGetPlantById, handleEditPlant })(EditPlantForm);

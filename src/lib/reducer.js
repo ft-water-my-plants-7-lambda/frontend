@@ -102,11 +102,13 @@ export const reducer = (state = initialState, action) => {
         plants: [...state.plants, action.payload],
       };
 
-    case ACTIONS.UPDATE_PLANT:
-      const { plant: plantData } = action.payload;
+    case ACTIONS.EDIT_PLANT:
+      const plantData = action.payload;
       return {
         ...state,
-        plants: state.plants.map((plant) => (plant.id === plantData.plant_id ? plantData : plant)),
+        plants: state.plants.map((plant) =>
+          plant.plant_id === plantData.plant_id ? plantData : plant
+        ),
       };
 
     case ACTIONS.DELETE_PLANT:
@@ -116,13 +118,13 @@ export const reducer = (state = initialState, action) => {
       };
 
     case ACTIONS.HANDLE_ERROR:
-      const [error, message] = action.payload;
+      const { value, message } = action.payload;
 
       return {
         ...state,
         errors: {
           ...state.errors,
-          [error]: message,
+          [value]: message,
         },
       };
 

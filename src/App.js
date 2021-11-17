@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 
 import { connect } from 'react-redux';
 import { handleInit } from './lib/actions/handleInit';
+import { handleGetAllPlants } from './lib/actions/handleGetAllPlants';
 
 // pages
 
@@ -22,8 +23,12 @@ import PlantPage from './pages/PlantPage';
 import EditPlantPage from './pages/EditPlantPage';
 import AddPlantPage from './pages/AddPlantPage';
 
-const App = ({ handleInit }) => {
+const App = ({ isAuthenticated, handleInit, handleGetAllPlants }) => {
   useEffect(() => handleInit(), [handleInit]);
+
+  useEffect(() => {
+    if (isAuthenticated) handleGetAllPlants();
+  }, [isAuthenticated, handleGetAllPlants]);
 
   return (
     <>
@@ -45,4 +50,6 @@ const App = ({ handleInit }) => {
   );
 };
 
-export default connect(null, { handleInit })(App);
+const mapStateToProps = (state) => ({ isAuthenticated: state.user.isAuthenticated });
+
+export default connect(mapStateToProps, { handleInit, handleGetAllPlants })(App);

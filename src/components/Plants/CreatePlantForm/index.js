@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import { handleCreatePlant } from '../../../lib/actions/handleCreatePlant';
+
 import { H2, Form, Label, Input, Button } from '../../FormStyledComponents';
 
-const AddPlants = (props) => {
+const CreatePlantForm = ({ handleCreatePlant }) => {
   const { push } = useHistory();
 
   const [plant, setPlant] = useState({
@@ -21,6 +25,8 @@ const AddPlants = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleCreatePlant(plant);
+    push('/plants');
   };
 
   const showWidget = (widget) => {
@@ -77,4 +83,4 @@ const AddPlants = (props) => {
   );
 };
 
-export default AddPlants;
+export default connect(null, { handleCreatePlant })(CreatePlantForm);

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import {
   WelcomeMessage,
   PlantAmount,
@@ -7,14 +6,9 @@ import {
 } from './DashboardElements';
 import PlantListItem from './PlantListItem';
 
-const PlantList = () => {
-  const [plants, setPlants] = useState([]);
+import { connect } from 'react-redux';
 
-  useEffect(() => {
-    // const { plants: plantsData } = handleGetAllPlants();
-    // setPlants(plantsData)
-  }, []);
-
+const PlantList = ({ plants }) => {
   return (
     <>
       <WelcomeMessage>Welcome Username</WelcomeMessage>
@@ -32,4 +26,6 @@ const PlantList = () => {
   );
 };
 
-export default PlantList;
+const mapStateToProps = (state) => ({ plants: state.plants });
+
+export default connect(mapStateToProps)(PlantList);
