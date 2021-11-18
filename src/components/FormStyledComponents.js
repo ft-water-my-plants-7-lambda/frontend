@@ -1,5 +1,6 @@
 // FormStyledComponents.js
-import styled from "styled-components";
+import styled from 'styled-components';
+import { AiFillCamera } from 'react-icons/ai';
 
 export const H2 = styled.h2`
   font-size: 1.5rem;
@@ -55,6 +56,11 @@ export const Input = styled.input`
   outline: none;
      
   `}
+
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.8);
+  }
 `;
 
 export const Div = styled.div`
@@ -122,4 +128,65 @@ export const P = styled.p`
   font-size: 0.7rem;
   align-self: center;
   color: red;
+`;
+
+export const ImageUpload = styled.div`
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  height: 32px;
+  margin-bottom: 2%;
+`;
+
+export const ImageUploadButton = styled.button`
+  margin-top: 10px;
+  width: 100%;
+  height: 35px;
+  color: #01bf71;
+  background: #fff;
+  font-size: 0.875rem;
+  font-weight: normal;
+  text-align: center;
+  border: 1px solid #01bf71;
+  border-radius: 3px 3px 3px 10px;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 0px 31px 0px 5px;
+  margin: 0;
+  border-bottom: 3px solid #01bf71;
+  border-left: 1px solid #01bf71;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const Span = styled.span`
+  @media (max-width: 305px) {
+    text-indent: -9999px;
+  }
+`;
+
+export const BrowseText = styled.span`
+  background: #ebebeb;
+  color: #ccc;
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-size: 0.875rem;
+  margin-right: 5px;
+  border-radius: 2px 2px 2px 5px;
+`;
+
+export const CammeraIcon = styled(AiFillCamera)`
+  color: #01bf71;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  padding: 6px 10px;
+  cursor: pointer;
 `;
