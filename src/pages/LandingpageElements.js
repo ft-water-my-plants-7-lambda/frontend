@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { MdKeyboardArrowRight, MdArrowForward } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { MdKeyboardArrowRight, MdArrowForward } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 export const HeroContainer = styled.div`
   background: #0c0c0c;
@@ -10,7 +10,7 @@ export const HeroContainer = styled.div`
   position: relative;
   z-index: 1;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -54,7 +54,8 @@ export const HeroContent = styled.div`
   z-index: 3;
   max-width: 1200px;
   position: absolute;
-  padding: 12%;
+  padding: 9% 0% 0 12%;
+  /* padding: 12%; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
