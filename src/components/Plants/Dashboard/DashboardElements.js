@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const WelcomeMessage = styled.h1`
   font-size: 2rem;
   text-align: center;
-  margin: 2% 0;
+  margin: 1% 0;
   font-weight: bold;
 
   @media (min-width: 1150px) {
