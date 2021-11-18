@@ -1,5 +1,5 @@
 // FormStyledComponents.js
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const H2 = styled.h2`
   font-size: 1.5rem;
@@ -29,6 +29,13 @@ export const Label = styled.label`
   flex-direction: column;
   margin: 3% 0;
   text-align: start;
+
+  ${(props) =>
+    props.photoLabel &&
+    `
+    flex-direction: row; 
+    align-items:center;
+  `}
 `;
 
 export const Input = styled.input`
@@ -80,7 +87,27 @@ export const Button = styled.button`
     color: rgba(230, 230, 230, 1);
     background-color: #a6a6a6;
     border: 2px solid white;
+    cursor: not-allowed;
   }
+  ${(props) =>
+    props.photoButton &&
+    `
+    width:6rem;
+    height: 2rem;
+    padding:1% 0;
+    margin:0% 5%;
+    border: 1px solid #b6b6b6;
+    border-radius:0.1rem;
+    background-color: #e7e7e7;
+    color: #2f2f2f;
+    font-size: 0.8rem;
+
+    :hover {
+      border: 1px solid #b6b6b6;
+      background-color: #e7e7e7;
+      color: #2f2f2f;
+    }
+  `}
 `;
 
 export const A = styled.a`
