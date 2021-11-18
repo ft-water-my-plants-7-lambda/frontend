@@ -7,19 +7,21 @@ import { handleRegister } from "../lib/actions/handleRegister";
 import { H2, Form, Label, Input, P, Button } from "./FormStyledComponents";
 import * as yup from "yup";
 
-const schema = yup.object().shape({
-  username: yup.string().required("*Username is required"),
-  phoneNumber: yup.string().required("*Phone number is required"),
-  password: yup.string().required("*Password is required"),
-  // confirmPassword: yup.string().required("*Confirm Password is required"),
-});
-
 const initialCredentials = {
   username: "",
   phoneNumber: "",
   password: "",
-  // confirmPassword: "",
+  confirmPassword: "",
 };
+
+const schema = yup.object().shape({
+  username: yup.string().required("*Username is required"),
+  phoneNumber: yup.string().required("*Phone number is required"),
+  password: yup.string().required("*Password is required"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "*Passwords must match"),
+});
 
 const RegisterForm = ({ handleRegister }) => {
   const { push } = useHistory();
@@ -30,24 +32,33 @@ const RegisterForm = ({ handleRegister }) => {
     username: "",
     phoneNumber: "",
     password: "",
-    // confirmPassword: "",
+    confirmPassword: "",
+  });
+
+  const [touched, setTouched] = useState({
+    username: false,
+    phoneNumber: false,
+    password: false,
+    confirm: false,
   });
 
   const [disabled, setDisabled] = useState(true);
 
-  const setFormErrors = (name, value) => {
-    yup
-      .reach(schema, name)
-      .validate(value)
-      .then(() => setErrors({ ...errors, [name]: "" }))
-      .catch((err) => setErrors({ ...errors, [name]: err.errors[0] }));
-  };
+  // const setFormErrors = (name, value) => {
+  //   yup
+  //     .reach(schema, name)
+  //     .validate(value)
+  //     .then(() => setErrors({ ...errors, [name]: "" }))
+  //     .catch((err) => setErrors({ ...errors, [name]: err.errors[0] }));
+  // };
 
   const change = (e) => {
     const name = e.target.name;
     const value = e.target.value;
 
-    setFormErrors(name, value);
+    // setFormErrors(name, value);
+    setTouched({ ...touched, [name]: true });
+
     setCredentials({ ...credentials, [name]: value });
   };
 
@@ -59,6 +70,18 @@ const RegisterForm = ({ handleRegister }) => {
   };
 
   useEffect(() => {
+    yup
+      .reach(schema)
+      .validate(credentials, { abortEarly: false })
+      .then(() => setErrors({}))
+      .catch((err) => {
+        const errors = {};
+        err.inner.forEach((error) => {
+          if (touched[error.path]) errors[error.path] = error.message;
+        });
+        setErrors(errors);
+      });
+
     schema.isValid(credentials).then((valid) => setDisabled(!valid));
   }, [credentials]);
 
@@ -99,11 +122,17 @@ const RegisterForm = ({ handleRegister }) => {
         />
         <P>{errors.password}</P>
       </Label>
-      {/* <Label>
+      <Label>
         Confirm Password:
-        <Input onChange={change} name="confirmPassword" type="password" />
+        <Input
+          onChange={change}
+          value={credentials.confirmPassword}
+          name="confirmPassword"
+          type="password"
+          placeholder="Confirm Password"
+        />
         <P>{errors.confirmPassword}</P>
-      </Label> */}
+      </Label>
       <Button disabled={disabled} type="submit">
         Sign Up
       </Button>
