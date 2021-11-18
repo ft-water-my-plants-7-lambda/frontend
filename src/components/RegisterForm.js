@@ -73,6 +73,7 @@ const RegisterForm = ({ handleRegister }) => {
           value={credentials.username}
           name="username"
           type="text"
+          placeholder="Enter Username"
         />
         <P>{errors.username}</P>
       </Label>
@@ -82,7 +83,8 @@ const RegisterForm = ({ handleRegister }) => {
           onChange={change}
           value={credentials.phoneNumber}
           name="phoneNumber"
-          type="tel"
+          type="text"
+          placeholder="Enter Phone Number"
         />
         <P>{errors.phoneNumber}</P>
       </Label>
@@ -93,6 +95,7 @@ const RegisterForm = ({ handleRegister }) => {
           value={credentials.password}
           name="password"
           type="password"
+          placeholder="Enter Password"
         />
         <P>{errors.password}</P>
       </Label>

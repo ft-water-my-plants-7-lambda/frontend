@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import { connect } from 'react-redux';
-import { handleUpdateUser } from '../lib/actions/handleUpdateUser';
+import { connect } from "react-redux";
+import { handleUpdateUser } from "../lib/actions/handleUpdateUser";
 
-import { H2, Form, Label, Input, Button } from './FormStyledComponents';
+import { H2, Form, Label, Input, Button } from "./FormStyledComponents";
 
 const UserProfileForm = ({ user: userData, handleUpdateUser }) => {
   const [user, setUser] = useState({
-    username: '',
-    password: '',
-    phoneNumber: '',
+    username: "",
+    password: "",
+    phoneNumber: "",
   });
 
   useEffect(() => {
     if (userData) {
       setUser({
         username: userData.username,
-        password: '',
+        password: "",
         phoneNumber: userData.phoneNumber,
       });
     }
@@ -63,10 +63,11 @@ const UserProfileForm = ({ user: userData, handleUpdateUser }) => {
           Change Phone Number:
           <Input
             name="phoneNumber"
-            type="tel"
+            type="text"
             placeholder="Enter a new phone number"
             value={user.phoneNumber}
             onChange={handleChange}
+            maxLength="15"
           />
         </Label>
         <Button>Update</Button>
