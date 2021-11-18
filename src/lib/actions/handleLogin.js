@@ -1,5 +1,11 @@
-import { resetError, startAPICall, loginSuccess, handleError, endAPICall } from '.';
-import { services } from '../../services';
+import {
+  resetError,
+  startAPICall,
+  loginSuccess,
+  handleError,
+  endAPICall,
+} from ".";
+import { services } from "../../services";
 
 export const handleLogin = (user) => async (dispatch) => {
   dispatch(resetError());

@@ -47,7 +47,7 @@ export const Input = styled.input`
   ${(props) =>
     props.login &&
     `
-  margin: 1% 0;
+  margin: 0% 0;
   // padding: 2% 2%;
   width:100%;
   // height:100%;
@@ -62,6 +62,9 @@ export const Div = styled.div`
   height: 1.8rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
+  @media (max-width: 1050px) {
+    height: 2.5rem;
+  }
 `;
 
 export const Button = styled.button`
