@@ -205,8 +205,13 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  font-size: 1.5rem;
-  padding: 2em;
+  font-size: 1.2rem;
+  padding: 2em 0;
+  margin-left: calc(5% + 0.19em);
+
+  @media (min-width: 1150px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const ModalWarningText = styled.p`
