@@ -54,7 +54,7 @@ const UserProfileForm = ({ user: userData, handleUpdateUser }) => {
           <Input
             name="password"
             type="password"
-            placeholder="Enter a new password"
+            placeholder="Enter New Password"
             value={user.password}
             onChange={handleChange}
           />
@@ -64,7 +64,7 @@ const UserProfileForm = ({ user: userData, handleUpdateUser }) => {
           <Input
             name="phoneNumber"
             type="text"
-            placeholder="Enter a new phone number"
+            placeholder="Enter New Phone Number"
             value={user.phoneNumber}
             onChange={handleChange}
             maxLength="15"
