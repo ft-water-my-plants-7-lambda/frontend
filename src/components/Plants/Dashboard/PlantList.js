@@ -8,10 +8,10 @@ import PlantListItem from './PlantListItem';
 
 import { connect } from 'react-redux';
 
-const PlantList = ({ plants }) => {
+const PlantList = ({ plants, user }) => {
   return (
     <>
-      <WelcomeMessage>Welcome Username</WelcomeMessage>
+      <WelcomeMessage>Welcome {user.username}</WelcomeMessage>
       <PlantAmount>You have {plants.length} Plants!</PlantAmount>
       {plants.length && (
         <PlantListWrapper>
@@ -26,6 +26,6 @@ const PlantList = ({ plants }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ plants: state.plants });
+const mapStateToProps = (state) => ({ plants: state.plants, user: state.user });
 
 export default connect(mapStateToProps)(PlantList);
