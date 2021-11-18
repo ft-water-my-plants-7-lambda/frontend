@@ -143,12 +143,12 @@ export const ImageUploadButton = styled.button`
   margin-top: 10px;
   width: 100%;
   height: 35px;
-  color: #01bf71;
+  color: #757575;
   background: #fff;
   font-size: 0.875rem;
   font-weight: normal;
   text-align: center;
-  border: 1px solid #01bf71;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 3px 3px 3px 10px;
   outline: none;
   cursor: pointer;
@@ -157,8 +157,8 @@ export const ImageUploadButton = styled.button`
   justify-content: left;
   padding: 0px 31px 0px 5px;
   margin: 0;
-  border-bottom: 3px solid #01bf71;
-  border-left: 1px solid #01bf71;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -172,7 +172,7 @@ export const Span = styled.span`
 
 export const BrowseText = styled.span`
   background: #ebebeb;
-  color: #ccc;
+  color: #757575;
   padding: 1px 5px;
   border-radius: 2px;
   font-size: 0.875rem;
@@ -181,7 +181,7 @@ export const BrowseText = styled.span`
 `;
 
 export const CammeraIcon = styled(AiFillCamera)`
-  color: #01bf71;
+  color: #ccc;
   position: absolute;
   top: 0;
   right: 0;
