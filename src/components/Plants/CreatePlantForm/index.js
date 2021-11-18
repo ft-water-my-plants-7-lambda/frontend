@@ -1,19 +1,31 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { connect } from "react-redux";
-import { handleCreatePlant } from "../../../lib/actions/handleCreatePlant";
+import { connect } from 'react-redux';
+import { handleCreatePlant } from '../../../lib/actions/handleCreatePlant';
 
-import { H2, Form, Label, Input, Button } from "../../FormStyledComponents";
+import {
+  H2,
+  Form,
+  Label,
+  Input,
+  Button,
+  ImageUpload,
+  ImageUploadButton,
+  Span,
+  BrowseText,
+  CammeraIcon,
+} from '../../FormStyledComponents';
 
 const CreatePlantForm = ({ handleCreatePlant }) => {
+  const [imageText, setImageText] = useState('');
   const { push } = useHistory();
 
   const [plant, setPlant] = useState({
-    nickname: "",
-    species: "",
-    h20frequency: "",
-    image: "",
+    nickname: '',
+    species: '',
+    h20frequency: '',
+    image: '',
   });
 
   const handleChange = (e) => {
@@ -26,7 +38,7 @@ const CreatePlantForm = ({ handleCreatePlant }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleCreatePlant(plant);
-    push("/plants");
+    push('/plants');
   };
 
   const showWidget = (widget) => {
@@ -35,16 +47,17 @@ const CreatePlantForm = ({ handleCreatePlant }) => {
 
   let widget = window.cloudinary.createUploadWidget(
     {
-      cloudName: "dnaaop75s",
-      uploadPreset: "soj1jqqs",
+      cloudName: 'dnaaop75s',
+      uploadPreset: 'soj1jqqs',
       autoUpload: false,
     },
     (error, result) => {
-      if (!error && result && result.event === "success") {
+      if (!error && result && result.event === 'success') {
         setPlant({
           ...plant,
           image: result.info.secure_url,
         });
+        setImageText(`${result.info.original_filename}.${result.info.format}`);
       }
     }
   );
@@ -64,42 +77,47 @@ const CreatePlantForm = ({ handleCreatePlant }) => {
         <Label>
           Plant Name:
           <Input
-            name="nickname"
-            type="text"
+            name='nickname'
+            type='text'
             value={nickname}
             onChange={handleChange}
-            placeholder="Enter Plant Name"
-            maxLength="50"
+            placeholder='Enter Plant Name'
+            maxLength='50'
           />
         </Label>
         <Label>
           Plant Species:
           <Input
-            name="species"
-            type="text"
+            name='species'
+            type='text'
             value={species}
             onChange={handleChange}
-            placeholder="Enter Plant Species"
-            maxLength="50"
+            placeholder='Enter Plant Species'
+            maxLength='50'
           />
         </Label>
         <Label>
           H20 Frequency:
           <Input
-            name="h20frequency"
-            type="text"
+            name='h20frequency'
+            type='text'
             value={h20frequency}
             onChange={handleChange}
-            placeholder="Enter Plant H20 Frequency"
-            maxLength="50"
+            placeholder='Enter Plant H20 Frequency'
+            maxLength='50'
           />
         </Label>
-        <Label photoLabel>
-          Photo:
-          <Button onClick={handleClick} photoButton>
-            Select Photo
-          </Button>
-        </Label>
+        <ImageUpload>
+          <ImageUploadButton onClick={handleClick} photoButton>
+            <BrowseText>Browse...</BrowseText>
+            {imageText ? (
+              <Span>{imageText}</Span>
+            ) : (
+              <Span>Select an image</Span>
+            )}
+          </ImageUploadButton>
+          <CammeraIcon onClick={handleClick} />
+        </ImageUpload>
         <Button>Add Plant</Button>
       </Form>
     </>
