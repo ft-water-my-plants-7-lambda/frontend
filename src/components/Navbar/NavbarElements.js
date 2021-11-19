@@ -5,6 +5,8 @@ export const Nav = styled.nav`
   background: #000;
   height: 80px;
   display: flex;
+  position: sticky;
+  top: 0;
   justify-content: center;
   align-items: center;
   font-size: 1rem;
