@@ -7,6 +7,9 @@ import { handleRegister } from '../lib/actions/handleRegister';
 import { H2, Form, Label, Input, P, Button } from './FormStyledComponents';
 import * as yup from 'yup';
 
+import axios from 'axios';
+import { API_URL } from '../config';
+
 const initialCredentials = {
   username: '',
   phoneNumber: '',
@@ -15,7 +18,25 @@ const initialCredentials = {
 };
 
 const schema = yup.object().shape({
-  username: yup.string().required('*Username is required'),
+  username: yup
+    .string()
+    .required('*Username is required')
+    .test(
+      'username',
+      'This username has already been taken',
+      async function (username) {
+        return axios
+          .get(`${API_URL}/users`)
+          .then((res) => {
+            return (
+              res.data.find((user) => user.username === username) === undefined
+            );
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    ),
   phoneNumber: yup.string().required('*Phone number is required'),
   password: yup.string().required('*Password is required'),
   confirmPassword: yup
