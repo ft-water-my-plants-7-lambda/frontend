@@ -51,9 +51,11 @@ const Plant = ({ handleGetPlantById, handleDeletePlant }) => {
   return (
     <>
       <DetailContainer>
-        <ImageContainer>
-          <Image src={plant.image} alt={plant.name} />
-        </ImageContainer>
+        {plant.image && (
+          <ImageContainer>
+            <Image src={plant.image} alt={plant.name} />
+          </ImageContainer>
+        )}
         <PlantInfo>
           <Label>Name:</Label>
           <Name>{plant.nickname}</Name>
@@ -67,7 +69,12 @@ const Plant = ({ handleGetPlantById, handleDeletePlant }) => {
           </Buttons>
         </PlantInfo>
       </DetailContainer>
-      {deleteModal && <DeleteMovieModal handleDelete={handleDelete} cancelDelete={cancelDelete} />}
+      {deleteModal && (
+        <DeleteMovieModal
+          handleDelete={handleDelete}
+          cancelDelete={cancelDelete}
+        />
+      )}
     </>
   );
 };
