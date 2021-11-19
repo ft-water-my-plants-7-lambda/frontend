@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export const Nav = styled.nav`
   background: #000;
@@ -74,26 +74,50 @@ export const MobileLogoImage = styled.img`
 `;
 
 export const NavMenu = styled.ul`
-  display: flex;
-  align-items: center;
-  list-style: none;
-  text-align: center;
-  margin-right: -22px;
+  flex: 1;
+  text-align: right;
   @media (max-width: 769px) {
     display: none;
   }
 `;
 
 export const NavItem = styled.li`
-  height: 80px;
+  display: inline-block;
+  list-style: none;
+  position: relative;
+  padding: 0 1rem;
+  margin-top: 11px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  &::after {
+    content: '';
+    display: block;
+    margin: auto;
+    width: 0%;
+    height: 4px;
+    background: #01bf71;
+    transition: 0.5s;
+  }
+
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
 `;
 
-export const NavLinks = styled(Link)`
+export const NavLinks = styled(NavLink)`
   color: #fff;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   text-decoration: none;
-  padding: 0 1rem;
   height: 100%;
   cursor: pointer;
+
+  &.active {
+    color: #01bf71;
+  }
 `;

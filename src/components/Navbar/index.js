@@ -40,25 +40,37 @@ const Navbar = ({ isAuthenticated }) => {
           {isAuthenticated ? (
             <NavMenu>
               <NavItem>
-                <NavLinks to='/plants'>Plants</NavLinks>
+                <NavLinks exact to='/plants'>
+                  Plants
+                </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/plants/add'>Add Plants</NavLinks>
+                <NavLinks exact to='/plants/add'>
+                  Add Plants
+                </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/user'>My Profile</NavLinks>
+                <NavLinks exact to='/user'>
+                  My Profile
+                </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/logout'>Logout</NavLinks>
+                <NavLinks exact to='/logout'>
+                  Logout
+                </NavLinks>
               </NavItem>
             </NavMenu>
           ) : (
             <NavMenu>
               <NavItem>
-                <NavLinks to='/login'>Login</NavLinks>
+                <NavLinks exact to='/login'>
+                  Login
+                </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/register'>Register</NavLinks>
+                <NavLinks exact to='/register'>
+                  Register
+                </NavLinks>
               </NavItem>
             </NavMenu>
           )}
